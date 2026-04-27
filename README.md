@@ -1,121 +1,148 @@
-# Automatización de reportes técnicos ambientales
-
-Proyecto de análisis de datos ecológicos orientado a la automatización de reportes técnicos ambientales, integrando R, Python y generación reproducible de documentos.
+# 🌿 Análisis Ecológico y Automatización de Reportes de Fauna
 
 ## 🎯 Objetivo
 
-Desarrollar un flujo de trabajo reproducible para:
+Desarrollar un flujo de trabajo reproducible para el análisis de datos de fauna en proyectos ambientales, permitiendo:
 
-- Procesar datos de monitoreo de fauna
-- Generar indicadores ecológicos
-- Construir tablas técnicas listas para informes
-- Automatizar la redacción de resultados
-- Exportar reportes en formato Word/PDF
+- Evaluar indicadores de manejo (rescate y ahuyentamiento)  
+- Analizar abundancia, riqueza y distribución de especies  
+- Generar tablas técnicas listas para informes  
+- Automatizar la redacción de resultados ecológicos  
+- Construir reportes técnicos reproducibles en Word/PDF  
 
 ## 🐾 Dataset
 
 El dataset corresponde a registros de manejo de fauna en campo, incluyendo:
 
-- Eventos de rescate y ahuyentamiento
-- Variables taxonómicas (Clase, Orden, Familia, Especie)
-- Variables operativas (Área, Abundancia, Manejo)
-- Variables de conservación (UICN, CITES, Distribución)
+- Eventos de **rescate y ahuyentamiento**  
+- Variables taxonómicas:
+  - Clase, Orden, Familia, Especie  
+- Variables operativas:
+  - Área, Abundancia, Manejo  
+- Variables de conservación:
+  - UICN, CITES, Distribución  
 
 Los datos provienen de monitoreos ambientales asociados a actividades de obra y manejo de biodiversidad.
 
+## 🧰 Herramientas utilizadas
 
-## ⚙️ Tecnologías utilizadas
+- **R** → análisis y automatización  
+- **tidyverse** → manipulación de datos  
+- **knitr / kableExtra** → tablas técnicas  
+- **Quarto** → reporte reproducible  
+- **Python (pandas, matplotlib)** → transformación y visualización  
+- **reticulate** → integración R + Python  
 
-- **R**
-  - dplyr, tidyr (procesamiento)
+## 🔬 Metodología
 
-  - knitr, kableExtra (tablas)
-  - Quarto (reportes)
+El análisis se desarrolló como un flujo de trabajo reproducible:
 
-- **Python**
-  - pandas (transformación de datos)
-  - matplotlib (visualización)
+### 1. Limpieza de datos
 
-- **Integración**
-  - reticulate (R + Python)
+- Validación de estructura  
+- Estandarización de variables  
+- Normalización de categorías (UICN, CITES, distribución)  
 
+### 2. Generación de tablas ecológicas
 
-## 📊 Funcionalidades principales
+- Estructura jerárquica:
+  - Orden → Familia → Especie  
+- Cálculo de abundancia por área  
+- Totales automáticos  
+- Formato listo para exportación (LaTeX / Word)  
 
-### 🔹 Generación automática de texto técnico
+### 3. Análisis descriptivo
 
-- Redacción dinámica por grupo faunístico:
-  - Abundancia
-  - Riqueza taxonómica
-  - Especies dominantes
-  - Distribución espacial
-- Lógica adaptable a:
-  - Rescate
-  - Ahuyentamiento
-  - Casos sin registros
+- Cálculo de:
+  - Abundancia total  
+  - Riqueza de especies  
+  - Número de familias y órdenes  
+- Identificación de:
+  - Especies dominantes  
+  - Áreas con mayor abundancia  
 
+### 4. Automatización de texto técnico
 
-### 🔹 Tablas ecológicas jerárquicas
+- Generación dinámica por grupo faunístico:
+  - Anfibios, reptiles, aves y mamíferos  
+- Adaptación a:
+  - Presencia/ausencia de datos  
+  - Tipo de manejo  
+- Redacción automática de:
+  - Resultados  
+  - Interpretación ecológica  
+  - Sección de reubicación  
 
-- Estructura taxonómica:
-  - Orden → Familia → Especie
+### 5. Análisis de conservación
+
+- Clasificación UICN  
+- Identificación de especies en riesgo (VU, EN, CR)  
+- Inclusión en CITES  
+- Evaluación de endemismo  
+
+### 6. Visualización
+
+- Gráficos automáticos de:
+  - Abundancia por especie  
+  - Abundancia por área  
+- Escalado dinámico según número de especies  
+
+### 7. Generación de reporte
+
 - Integración de:
-  - CITES
-  - UICN
-  - Distribución
-- Totales automáticos
-- Formato listo para LaTeX / Word
+  - Texto automático  
+  - Tablas  
+  - Figuras  
+- Exportación mediante **Quarto**  
 
+## 📈 Resultados generados
 
-### 🔹 Visualización automática
+### 📊 Figuras
 
-- Gráficos de:
-  - Abundancia por especie
-  - Abundancia por área
-- Escalado dinámico según número de especies
+- Abundancia por especie  
+- Abundancia por área  
+- Comparación por tipo de manejo  
 
+### 📋 Tablas
 
-### 🔹 Sección de conservación automatizada
+- Registros de fauna por área  
+- Estructura taxonómica jerárquica  
+- Categorías de conservación (UICN, CITES, distribución)  
 
-- Clasificación UICN
-- Identificación de especies en riesgo
-- Inclusión en CITES
-- Detección de endemismo
+### 📝 Texto técnico
 
+- Resultados automatizados por grupo faunístico  
+- Sección de reubicación  
+- Sección de especies con interés para la conservación  
 
-## 🔁 Flujo de trabajo
-
-1. Ingesta de datos de campo
-2. Procesamiento y limpieza (R / Python)
-3. Generación de tablas y gráficos
-4. Construcción automática de texto
-5. Exportación de reporte final
-
+📄 Informe completo disponible en:  
+`/report/report.qmd`
 
 ## 📁 Estructura del proyecto
-.
-├── assets/                 # Recursos auxiliares
-├── config/                 # Configuración del proyecto
+```
+├── assets/ # Recursos auxiliares
+├── config/ # Configuración del proyecto
 │
 ├── data/
-│   ├── raw/                # Datos originales
-│   ├── processed/          # Datos limpios
-│   └── lookup/             # Tablas de referencia
+│ ├── raw/ # Datos originales
+│ ├── processed/ # Datos limpios
+│ └── lookup/ # Tablas de referencia
 │
 ├── outputs/
-│   ├── figures/            # Figuras generadas
-│   └── tables/             # Tablas exportadas
+│ ├── figures/ # Figuras generadas
+│ └── tables/ # Tablas exportadas
 │
 ├── scripts/
-│   ├── 01_cleaning.R       # Limpieza de datos
-│   ├── 02_tables.R         # Generación de tablas
-│   ├── 03_plots.R          # Visualizaciones
-│   └── Run_all.R           # Ejecución completa
+│ ├── 01_cleaning.R # Limpieza de datos
+│ ├── 02_tables.R # Generación de tablas
+│ ├── 03_plots.R # Visualizaciones
+│ └── Run_all.R # Ejecución completa
 │
 ├── report/
-│   └── report.qmd          # Reporte en Quarto
+│ └── report.qmd # Reporte en Quarto
 │
 └── README.md
+```
 
 🔁 Reproducibilidad
 
@@ -123,7 +150,9 @@ Este proyecto fue diseñado como un flujo de trabajo completamente reproducible.
 
 Para ejecutar el análisis completo:
 
+```r
 source("scripts/Run_all.R")
+```
 
 Este script ejecuta de forma secuencial:
 
@@ -133,4 +162,6 @@ Este script ejecuta de forma secuencial:
 
 Una vez finalizado, se puede generar el reporte técnico en PDF con:
 
+```bash
 quarto render report/report.qmd
+```
