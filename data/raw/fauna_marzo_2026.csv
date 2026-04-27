@@ -1,0 +1,121 @@
+Id_registro,Fecha,Proyecto,Area,Actividad,Manejo,Clase,Especie,Nombre_comun,Abundancia,Estado,Reubicado
+1,2026-03-01,Proyecto Solar Alpha,Área 3,Inspección,rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si
+2,2026-03-01,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,4,vivo,
+3,2026-03-01,Proyecto Solar Alpha,Área 1,Inspección,ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,
+4,2026-03-01,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,
+5,2026-03-02,Proyecto Solar Alpha,Área 3,Inspección,rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,2,vivo,si
+6,2026-03-02,Proyecto Solar Alpha,Área 1,Inspección,ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,
+7,2026-03-02,Proyecto Solar Alpha,Área 1,Obra civil,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,
+8,2026-03-02,Proyecto Solar Alpha,Área 3,Inspección,rescate,Reptilia,Trachemys callirostris,Hicotea,2,vivo,si
+9,2026-03-03,Proyecto Solar Alpha,Área 2,Rocería,rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si
+10,2026-03-03,Proyecto Solar Alpha,Área 2,Inspección,rescate,Reptilia,Helicops danieli,Mapaná de agua,2,vivo,si
+11,2026-03-03,Proyecto Solar Alpha,Área 4,Obra civil,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,
+12,2026-03-03,Proyecto Solar Alpha,Área 1,Obra civil,ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,
+13,2026-03-04,Proyecto Solar Alpha,Área 3,Rocería,rescate,Reptilia,Boa constrictor,Boa,1,vivo,si
+14,2026-03-04,Proyecto Solar Alpha,Área 2,Rocería,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,
+15,2026-03-04,Proyecto Solar Alpha,Área 1,Obra civil,rescate,Reptilia,Boa constrictor,Boa,2,vivo,si
+16,2026-03-04,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,rescate,Amphibia,Scinax ruber,Ranita,2,vivo,si
+17,2026-03-05,Proyecto Solar Alpha,Área 3,Rocería,rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si
+18,2026-03-05,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,rescate,Reptilia,Helicops danieli,Mapaná de agua,2,vivo,si
+19,2026-03-05,Proyecto Solar Alpha,Área 1,Rocería,rescate,Amphibia,Scinax ruber,Ranita,2,vivo,si
+20,2026-03-05,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,8,vivo,
+21,2026-03-06,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,
+22,2026-03-06,Proyecto Solar Alpha,Área 1,Inspección,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,
+23,2026-03-06,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+24,2026-03-06,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+25,2026-03-07,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Reptilia,Iguana iguana,Iguana,2,vivo,
+26,2026-03-07,Proyecto Solar Alpha,Área 1,Obra civil,rescate,Mammalia,Myrmecophaga tridactyla,Oso hormiguero,1,vivo,si
+27,2026-03-07,Proyecto Solar Alpha,Área 4,Rocería,rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si
+28,2026-03-07,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,
+29,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,
+30,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+31,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,
+32,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,4,vivo,
+33,2026-03-09,Proyecto Solar Alpha,Área 2,Inspección,rescate,Reptilia,Boa constrictor,Boa,1,vivo,si
+34,2026-03-09,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,
+35,2026-03-09,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,rescate,Reptilia,Helicops danieli,Mapaná de agua,1,vivo,si
+36,2026-03-09,Proyecto Solar Alpha,Área 3,Inspección,ahuyentamiento,Mammalia,Zygodontomys brevicauda,Ratón de caña,12,vivo,
+37,2026-03-10,Proyecto Solar Alpha,Área 4,Rocería,rescate,Amphibia,Scinax ruber,Ranita,2,vivo,si
+38,2026-03-10,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,
+39,2026-03-10,Proyecto Solar Alpha,Área 2,Obra civil,rescate,Aves,Coragyps atratus,Chulo,1,vivo,si
+40,2026-03-10,Proyecto Solar Alpha,Área 2,Inspección,rescate,Mammalia,Myrmecophaga tridactyla,Oso hormiguero,1,vivo,si
+41,2026-03-11,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,
+42,2026-03-11,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,ahuyentamiento,Aves,Turdus grayi,Mirla,4,vivo,
+43,2026-03-11,Proyecto Solar Alpha,Área 1,Rocería,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,
+44,2026-03-11,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,
+45,2026-03-12,Proyecto Solar Alpha,Área 1,Rocería,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,
+46,2026-03-12,Proyecto Solar Alpha,Área 1,Rocería,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,
+47,2026-03-12,Proyecto Solar Alpha,Área 2,Inspección,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+48,2026-03-12,Proyecto Solar Alpha,Área 3,Inspección,rescate,Reptilia,Helicops danieli,Mapaná de agua,2,vivo,si
+49,2026-03-13,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,
+50,2026-03-13,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Turdus grayi,Mirla,3,vivo,
+51,2026-03-13,Proyecto Solar Alpha,Área 4,Rocería,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,
+52,2026-03-13,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,
+53,2026-03-14,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,4,vivo,
+54,2026-03-14,Proyecto Solar Alpha,Área 1,Inspección,rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,1,vivo,si
+55,2026-03-14,Proyecto Solar Alpha,Área 1,Rocería,rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si
+56,2026-03-14,Proyecto Solar Alpha,Área 4,Obra civil,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,
+57,2026-03-15,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Reptilia,Iguana iguana,Iguana,4,vivo,
+58,2026-03-15,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Mammalia,Didelphis marsupialis,Zarigüeya,4,vivo,
+59,2026-03-15,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,2,vivo,si
+60,2026-03-15,Proyecto Solar Alpha,Área 3,Inspección,ahuyentamiento,Aves,Turdus grayi,Mirla,4,vivo,
+61,2026-03-16,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,
+62,2026-03-16,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,2,vivo,si
+63,2026-03-16,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,
+64,2026-03-16,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,1,vivo,si
+65,2026-03-17,Proyecto Solar Alpha,Área 4,Obra civil,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+66,2026-03-17,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+67,2026-03-17,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,
+68,2026-03-17,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,
+69,2026-03-18,Proyecto Solar Alpha,Área 1,Inspección,rescate,Reptilia,Helicops danieli,Mapaná de agua,3,vivo,si
+70,2026-03-18,Proyecto Solar Alpha,Área 1,Rocería,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+71,2026-03-18,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,
+72,2026-03-18,Proyecto Solar Alpha,Área 1,Rocería,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+73,2026-03-19,Proyecto Solar Alpha,Área 4,Rocería,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,
+74,2026-03-19,Proyecto Solar Alpha,Área 1,Inspección,ahuyentamiento,Aves,Turdus grayi,Mirla,4,vivo,
+75,2026-03-19,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,
+76,2026-03-19,Proyecto Solar Alpha,Área 3,Inspección,rescate,Reptilia,Boa constrictor,Boa,2,vivo,si
+77,2026-03-20,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si
+78,2026-03-20,Proyecto Solar Alpha,Área 1,Inspección,rescate,Amphibia,Ceratophrys calcarata,Sapo cornudo,2,vivo,si
+79,2026-03-20,Proyecto Solar Alpha,Área 2,Rocería,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+80,2026-03-20,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,4,vivo,
+81,2026-03-21,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,
+82,2026-03-21,Proyecto Solar Alpha,Área 1,Inspección,rescate,Reptilia,Helicops danieli,Mapaná de agua,1,vivo,si
+83,2026-03-21,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Mammalia,Zygodontomys brevicauda,Ratón de caña,12,vivo,
+84,2026-03-21,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,
+85,2026-03-22,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+86,2026-03-22,Proyecto Solar Alpha,Área 3,Rocería,rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si
+87,2026-03-22,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,
+88,2026-03-22,Proyecto Solar Alpha,Área 4,Rocería,ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,
+89,2026-03-23,Proyecto Solar Alpha,Área 4,Rocería,rescate,Amphibia,Scinax ruber,Ranita,3,vivo,si
+90,2026-03-23,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,ahuyentamiento,Mammalia,Procyon cancrivorus,Mapache,2,vivo,
+91,2026-03-23,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,
+92,2026-03-23,Proyecto Solar Alpha,Área 4,Obra civil,rescate,Mammalia,Myrmecophaga tridactyla,Oso hormiguero,1,vivo,si
+93,2026-03-24,Proyecto Solar Alpha,Área 1,Obra civil,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,
+94,2026-03-24,Proyecto Solar Alpha,Área 4,Inspección,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+95,2026-03-24,Proyecto Solar Alpha,Área 2,Inspección,ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,6,vivo,
+96,2026-03-24,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,
+97,2026-03-25,Proyecto Solar Alpha,Área 4,Rocería,rescate,Reptilia,Boa constrictor,Boa,1,vivo,si
+98,2026-03-25,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Aves,Milvago chimachima,Caracara,3,vivo,
+99,2026-03-25,Proyecto Solar Alpha,Área 1,Rocería,rescate,Reptilia,Boa constrictor,Boa,2,vivo,si
+100,2026-03-25,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+101,2026-03-26,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Aves,Turdus grayi,Mirla,3,vivo,
+102,2026-03-26,Proyecto Solar Alpha,Área 4,Rocería,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+103,2026-03-26,Proyecto Solar Alpha,Área 2,Rocería,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+104,2026-03-26,Proyecto Solar Alpha,Área 2,Obra civil,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,
+105,2026-03-27,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Reptilia,Iguana iguana,Iguana,4,vivo,
+106,2026-03-27,Proyecto Solar Alpha,Área 2,Rocería,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+107,2026-03-27,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+108,2026-03-27,Proyecto Solar Alpha,Área 3,Inspección,ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,
+109,2026-03-28,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,
+110,2026-03-28,Proyecto Solar Alpha,Área 2,Inspección,ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,6,vivo,
+111,2026-03-28,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,
+112,2026-03-28,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,
+113,2026-03-29,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,
+114,2026-03-29,Proyecto Solar Alpha,Área 1,Obra civil,ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,7,vivo,
+115,2026-03-29,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,
+116,2026-03-29,Proyecto Solar Alpha,Área 3,Obra civil,ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,
+117,2026-03-30,Proyecto Solar Alpha,Área 3,Rocería,rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si
+118,2026-03-30,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,ahuyentamiento,Aves,Milvago chimachima,Caracara,3,vivo,
+119,2026-03-30,Proyecto Solar Alpha,Área 3,Rocería,ahuyentamiento,Reptilia,Iguana iguana,Iguana,4,vivo,
+120,2026-03-31,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,

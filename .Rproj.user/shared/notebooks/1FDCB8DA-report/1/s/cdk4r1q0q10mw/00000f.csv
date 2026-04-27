@@ -1,0 +1,9 @@
+"0","#| label: Encabezado personalizado"
+"0","#| results: asis"
+"0",""
+"0","cat(paste0("""
+"0","\\fancyhead[R]{\\small Versión "", params$version, ""\\\\ \\today}"
+"0","""))"
+"1","
+\fancyhead[R]{\small Versión 1\\ \today}
+"

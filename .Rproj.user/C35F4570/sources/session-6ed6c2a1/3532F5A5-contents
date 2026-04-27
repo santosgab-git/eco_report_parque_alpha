@@ -1,0 +1,2395 @@
+---
+title: ""
+subtitle: ""
+author: ""
+date: ""
+
+params:
+  mes: "Marzo 2026"
+  version: "0"
+
+format:
+  pdf:
+    documentclass: article
+    toc: false
+    lof: false
+    lot: false
+    fig-pos: H
+    number-sections: true
+    colorlinks: false
+    lang: es
+    pdf-engine: xelatex
+    mainfont: Times New Roman
+    fontsize: 11pt
+    linestretch: 1.5
+
+    geometry:
+      - top=2.5cm
+      - bottom=2.5cm
+      - left=2.5cm
+      - right=2.5cm
+    
+    header-includes:
+      - \usepackage{fancyhdr}
+      - \usepackage{float}
+      - \usepackage{graphicx}
+      - \usepackage{lastpage}
+      - \usepackage{titlesec}
+      - \usepackage{pdflscape}
+      - \usepackage{caption}
+      - \usepackage{subcaption}
+      - \usepackage{tocloft}
+      - \usepackage{setspace}
+      
+      # ---------------------------------
+      # CONTROL DE SANGRÍA (INDENTACIÓN)
+      # ---------------------------------
+      - \usepackage{indentfirst}            
+      - \setlength{\parindent}{1.25cm}      
+      - \setlength{\parskip}{6pt}
+      
+      # ---------------------------------
+      # NOMBRES EN ESPAÑOL
+      # ---------------------------------
+      - \renewcommand{\figurename}{Figura}
+      - \renewcommand{\tablename}{Tabla}
+      
+      # ---------------------------------
+      # FORMATO LISTA DE FIGURAS Y TABLAS
+      # ---------------------------------
+      - \renewcommand{\cftfigpresnum}{\textbf{Figura }\textbf}
+      - \renewcommand{\cftfigaftersnum}{.\ }
+      - \setlength{\cftfignumwidth}{1.5cm}
+      
+      - \renewcommand{\cfttabpresnum}{\textbf{Tabla }\textbf}
+      - \renewcommand{\cfttabaftersnum}{.\ }
+      - \setlength{\cfttabnumwidth}{1.5cm}
+      
+      # ---------------------------------
+      # FORMATO TABLA DE CONTENIDO
+      # ---------------------------------
+      - \renewcommand{\cftsecfont}{\bfseries}
+      - \renewcommand{\cftsecpagefont}{\bfseries}
+      
+      # --------------------------------------------
+      # NEGRITA Y TAMAÑO 9pt (small) EN CAPTIONS 
+      # --------------------------------------------
+      - \captionsetup[figure]{labelfont=bf, font=small}
+      - \captionsetup[table]{labelfont=bf, font=small}
+
+      # ---------------------------------
+      # FORZAR HEADER EN TODAS LAS PÁGINAS
+      # ---------------------------------
+      - \makeatletter
+      - \let\ps@plain\ps@fancy
+      - \makeatother
+
+      - \pagestyle{fancy}
+      - \fancyhf{}
+
+      # HEADER
+      - \fancyhead[L]{\includegraphics[height=1cm]{../assets/logo.png}}
+      - \fancyhead[C]{\textbf{Parque Solar Alpha}\\ \small Informe de Gestión de Fauna}
+      - \fancyhead[R]{}
+
+      # FOOTER
+      - \fancyfoot[C]{\thepage}
+
+      # líneas
+      - \renewcommand{\headrulewidth}{0.4pt}
+      - \renewcommand{\footrulewidth}{0pt}
+
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: Encabezado personalizado
+#| results: asis
+
+cat(paste0("
+\\fancyhead[R]{\\small Versión ", params$version, "\\\\ \\today}
+"))
+```
+
+```{r}
+#| label: Portada personalizada
+#| results: asis
+
+cat(paste0("
+\\pagenumbering{gobble}
+
+\\begin{titlepage}
+\\centering
+
+\\includegraphics[width=0.35\\textwidth]{../assets/logo.png}
+
+\\vspace{2cm}
+
+{\\Huge \\textbf{Informe Mensual de Gestión de Fauna}}\\\\[1cm]
+
+{\\Large Proyecto Parque Solar Alpha}\\\\[0.5cm]
+
+\\vspace{1.5cm}
+
+{\\large Ecoambiente Solar}\\\\[0.5cm]
+
+{\\large ", params$mes, "}\\\\[0.5cm]
+
+{\\large Versión ", params$version, "}\\\\[0.5cm]
+
+\\vfill
+
+{\\large \\today}
+
+\\end{titlepage}
+"))
+```
+
+```{r}
+#| label: Índices y numeración
+#| results: asis
+
+cat("
+\\clearpage
+\\pagenumbering{arabic}
+\\setcounter{page}{1}
+
+\\tableofcontents
+\\clearpage
+
+\\renewcommand{\\listtablename}{Lista de tablas}
+\\listoftables
+\\clearpage
+
+\\renewcommand{\\listfigurename}{Lista de figuras}
+\\listoffigures
+\\clearpage
+")
+```
+
+```{r}
+#| label: Carga y configuración inicial
+
+# ===========================================
+# CARGA DE LIBRERÍAS
+# ===========================================
+
+library(stringr)  # Manejo de texto
+library(lubridate)# Manejo de fechas
+
+# ===========================================
+# UBICAR ARCHIVO AUTOMÁTICAMENTE
+# ===========================================
+
+# Busca archivos tipo fauna_mes_año.csv en la carpeta
+files <- list.files("../data/raw", pattern = "fauna_.*\\.csv", full.names = TRUE)
+
+# Validación: si no hay archivos, detener ejecución
+if (length(files) == 0) {
+  stop("No se encontró archivo de fauna en data/raw")
+}
+
+# Selecciona el primer archivo encontrado
+file_path <- files[1]
+file_name <- basename(file_path)
+
+# ===========================================
+# EXTRAER MES Y AÑO DESDE EL NOMBRE DEL ARCHIVO
+# ===========================================
+
+# Quitar extensión .csv
+name_clean <- str_remove(file_name, ".csv")
+
+# Separar por "_"
+partes <- str_split(name_clean, "_")[[1]]
+
+# Extraer componentes
+MES_txt <- partes[2]
+AÑO <- partes[3]
+
+# ===========================================
+# MAPEAR MES (TEXTO → NÚMERO)
+# ===========================================
+
+meses <- c(
+  "enero" = 1, "febrero" = 2, "marzo" = 3,
+  "abril" = 4, "mayo" = 5, "junio" = 6,
+  "julio" = 7, "agosto" = 8, "septiembre" = 9,
+  "octubre" = 10, "noviembre" = 11, "diciembre" = 12
+)
+
+# Convertir mes a número
+MES_num <- meses[MES_txt]
+
+# Formato presentación
+MES <- str_to_lower (MES_txt)
+
+# ===========================================
+# CONSTRUIR FECHAS DE INICIO Y FIN
+# ===========================================
+
+# Primer día del mes
+fecha_inicio <- as.Date(paste(AÑO, MES_num, "01", sep = "-"))
+
+# Último día del mes
+fecha_fin <- ceiling_date(fecha_inicio, "month") - days(1)
+
+# Formato legible
+FECHA_INICIO <- format(fecha_inicio, "%d de %B de %Y")
+FECHA_FIN <- format(fecha_fin, "%d de %B de %Y")
+```
+
+# Introducción
+
+El proyecto de generación de energía fotovoltaica denominado **Parque Solar Fotovoltaico Alpha** se enmarca dentro del desarrollo de fuentes no convencionales de energía renovable (FNCER), orientadas al aprovechamiento sostenible del recurso solar y a la diversificación de la matriz energética nacional.
+
+Para su ejecución, el proyecto contempla las fases preoperativa, constructiva, operativa y de cierre, en las cuales se desarrollan diferentes actividades que pueden generar interacciones con los componentes bióticos del área de influencia. En este contexto, se establecen medidas de manejo orientadas a prevenir, mitigar, corregir y compensar los posibles impactos ambientales asociados.
+
+En cumplimiento de lo establecido en el Plan de Manejo Ambiental (PMA) aprobado mediante la licencia ambiental vigente, el presente informe de gestión ambiental presenta los resultados del seguimiento a las actividades de manejo de fauna desarrolladas durante el periodo `r MES` `r AÑO`, en el marco de la ejecución del proyecto.
+
+# Objetivos
+
+## Objetivo general
+
+Presentar el informe de gestión ambiental correspondiente al periodo `r FECHA_INICIO` al `r FECHA_FIN`, en el marco de las actividades de manejo de fauna asociadas al proyecto Parque Solar Fotovoltaico Alpha.
+
+## Objetivos específicos
+
+-   Presentar el resumen de las actividades de manejo de fauna desarrolladas durante el periodo evaluado.
+
+-   Evaluar la implementación de las medidas de manejo ambiental relacionadas con el componente fauna.
+
+-   Documentar los resultados obtenidos en términos de rescate, ahuyentamiento y reubicación de individuos.
+
+-   Consolidar la información técnica que soporte el cumplimiento de las obligaciones ambientales establecidas en el PMA.
+
+```{r}
+#| label: Leer datos y obtener actividades
+
+# ===========================================
+# CARGA DE LIBRERÍAS
+# ===========================================
+
+library(readr) # Lectura de archivos
+library(dplyr) # Manipulación de datos
+
+# leer dataset limpio
+df <- read_csv("../data/processed/fauna_clean.csv")
+
+# actividades únicas del mes
+actividades <- df %>%
+  distinct(Actividad) %>%
+  pull(Actividad)
+
+# convertir a texto
+actividades_txt <- paste(actividades, collapse = ", ")
+```
+
+\clearpage
+
+# Metodología
+
+Las actividades de manejo de fauna se desarrollaron en el área de influencia del proyecto, en el marco de la ejecución de las fases constructivas, en cumplimiento de los lineamientos establecidos en el Plan de Manejo Ambiental (PMA).
+
+Durante el periodo `r MES` `r AÑO`, se realizó acompañamiento a las siguientes actividades del proyecto: `r actividades_txt`, en las cuales se evaluó la presencia de fauna silvestre y se implementaron medidas de manejo orientadas a minimizar la afectación sobre los individuos.
+
+El manejo de fauna se enfocó en la aplicación de acciones de ahuyentamiento y rescate, priorizando en todos los casos la integridad de los organismos y su posterior reubicación en condiciones adecuadas.
+
+## Identificación y caracterización taxonómica
+
+Los individuos registrados durante las actividades fueron identificados hasta el nivel taxonómico más preciso posible, empleando criterios morfológicos, observación directa y literatura especializada.
+
+En el caso de grupos como anfibios y reptiles, se realizó la búsqueda activa en microhábitats potenciales tales como hojarasca, troncos en descomposición, rocas, cavidades y vegetación baja, donde estas especies suelen refugiarse.
+
+La identificación taxonómica se apoyó en el uso de guías de campo y literatura especializada, así como en la verificación de nombres científicos y distribución mediante bases de datos actualizadas.
+
+## Protocolos de manejo operativo (Ahuyentamiento y Rescate)
+
+-   **Ahuyentamiento Preventivo:** Acciones orientadas a inducir el desplazamiento voluntario mediante métodos mecánicos (remoción controlada de microhábitats) y métodos sonoros (perturbación acústica), priorizando la salida autónoma de los individuos del área de riesgo.
+
+-   **Rescate y Reubicación:** Aplicado a individuos de baja movilidad o en riesgo inminente. Se empleó captura manual y herramientas especializadas (ganchos o pértigas) para asegurar un manejo seguro. Tras la captura, los organismos fueron valorados y liberados en zonas de recepción con conectividad ecológica y características de hábitat similares a las áreas de intervención.
+
+\clearpage
+
+# Resultados
+
+## Resultados generales de la gestión de fauna
+
+```{r}
+#| label: Configurar insumos para resultados generales
+
+library(readr) # Lectura de archivos
+library(dplyr) # Manipulación de datos
+library(knitr) # Generar tablas
+
+# ===========================================
+# DEFINIR RUTAS DE ARCHIVOS
+# ==========================================
+
+file_tabla <- "../outputs/tables/tabla_clase_manejo.csv"
+file_fig   <- "../outputs/figures/figura_general.png"
+file_data  <- "../data/processed/fauna_clean.csv"
+
+# ===========================================
+# CARGAR DATOS
+# ===========================================
+
+tabla <- if (file.exists(file_tabla)) read_csv(file_tabla) else NULL
+df    <- if (file.exists(file_data))  read_csv(file_data)  else NULL
+
+# ===========================================
+# VALIDAR DISPONIBILIDAD DE DATOS
+# ===========================================
+
+hay_datos <- !is.null(tabla) && nrow(tabla) > 0
+```
+
+```{r}
+#| label: Función formatear lista en español
+
+# ===========================================
+# FUNCIÓN: FORMATEAR LISTAS CON "Y / E"
+# ===========================================
+
+formatear_lista <- function(x) {
+  
+  x <- trimws(na.omit(x))
+  
+  if (length(x) == 0) return("")
+  if (length(x) == 1) return(x)
+  
+  # función para limpiar latex
+  limpiar <- function(txt) {
+    txt %>%
+      gsub("\\\\textit\\{|\\}", "", .) %>%  # quita \textit{}
+      trimws()
+  }
+  
+  # =========================
+  # CASO 2 ELEMENTOS
+  # =========================
+  if (length(x) == 2) {
+    
+    segundo_limpio <- limpiar(x[2])
+    
+    conj <- if (grepl("^(i|hi)", segundo_limpio, ignore.case = TRUE)) " e " else " y "
+    
+    return(paste0(x[1], conj, x[2]))
+  }
+  
+  # =========================
+  # MÁS DE 2 ELEMENTOS
+  # =========================
+  ultima <- x[length(x)]
+  ultima_limpia <- limpiar(ultima)
+  
+  resto <- paste(x[-length(x)], collapse = ", ")
+  
+  conj <- if (grepl("^(i|hi)", ultima_limpia, ignore.case = TRUE)) " e " else " y "
+  
+  return(paste0(resto, conj, ultima))
+}
+```
+
+```{r}
+#| label: Función generar texto de resultados generales
+
+# ===========================================
+# FUNCIÓN: GENERAR TEXTO DEL REPORTE
+# ===========================================
+
+generar_texto <- function(df, tabla, mes, año) {
+
+  # ======================
+  # VALIDACIÓN INICIAL
+  # ======================
+
+  if (is.null(df) || nrow(df) == 0) {
+    return(paste0(
+      "No se registraron individuos de fauna durante el mes de ",
+      mes, " de ", año, "."
+    ))
+  }
+
+  total <- tabla %>%
+  filter(Clase == "Total") %>%
+  pull(Total)
+
+  if (total == 0) {
+    return(paste0(
+      "No se registraron individuos de fauna durante el mes de ",
+      mes, " de ", año, "."
+    ))
+  }
+
+  # ======================
+  # MÉTRICAS GENERALES
+  # ======================
+
+  n_especies <- n_distinct(df$Especie)
+  n_familias <- n_distinct(df$Familia)
+  n_ordenes  <- n_distinct(df$Orden)
+
+  clases <- tabla %>%
+    filter(Clase != "Total", Total > 0) %>%
+    pull(Clase)
+
+  # ======================
+  # TEXTO BASE
+  # ======================
+
+  texto <- paste0(
+    "Para el mes de ", mes, " de ", año,
+    " se registraron ", total, " individuos en ",
+    n_especies, " especies, ", n_familias,
+    " familias y ", n_ordenes,
+    " órdenes, pertenecientes a las clases ",
+    formatear_lista(clases),
+    " (**@fig-general****A**, **@tbl-clase-manejo**). "
+  )
+
+  # ======================
+  # AHUYENTAMIENTO
+  # ======================
+
+  df_ahu <- df %>% filter(Manejo == "Ahuyentamiento")
+  total_ahu <- sum(df_ahu$Abundancia, na.rm = TRUE)
+
+  if (total_ahu > 0) {
+
+    clases_ahu <- df_ahu %>%
+      group_by(Clase) %>%
+      summarise(n = sum(Abundancia), .groups="drop") %>%
+      arrange(desc(n)) %>%
+      mutate(txt = paste0(Clase, " (n = ", n, ")")) %>%
+      pull(txt)
+
+    actividades_ahu <- df_ahu %>%
+      group_by(Actividad) %>%
+      summarise(n = sum(Abundancia), .groups="drop") %>%
+      arrange(desc(n)) %>%
+      mutate(txt = paste0(Actividad, " (n = ", n, ")")) %>%
+      pull(txt)
+
+    texto <- paste0(
+      texto,
+      "Se manejaron ", total_ahu,
+      " individuos mediante ahuyentamiento, principalmente en ",
+      formatear_lista(clases_ahu),
+      " (**@fig-general****B**)",
+      ", en actividades de ",
+      formatear_lista(actividades_ahu),
+      " (**@fig-general****C**). "
+    )
+  }
+
+  # ======================
+  # RESCATE
+  # ======================
+
+  df_res <- df %>% filter(Manejo == "Rescate")
+  total_res <- sum(df_res$Abundancia, na.rm = TRUE)
+
+  if (total_res > 0) {
+
+    clases_res <- df_res %>%
+      group_by(Clase) %>%
+      summarise(n = sum(Abundancia), .groups="drop") %>%
+      arrange(desc(n)) %>%
+      mutate(txt = paste0(Clase, " (n = ", n, ")")) %>%
+      pull(txt)
+
+    actividades_res <- df_res %>%
+      group_by(Actividad) %>%
+      summarise(n = sum(Abundancia), .groups="drop") %>%
+      arrange(desc(n)) %>%
+      mutate(txt = paste0(Actividad, " (n = ", n, ")")) %>%
+      pull(txt)
+
+    texto <- paste0(
+      texto,
+      "\n\n", 
+      "Se rescataron ", total_res,
+      " individuos, correspondientes a ",
+      formatear_lista(clases_res),
+      " (**@fig-general****B**)",
+      ", en actividades de ",
+      formatear_lista(actividades_res),
+      " (**@fig-general****C**)."
+    )
+  }
+
+  texto
+}
+
+# ===========================================
+# GENERAR TEXTO FINAL
+# ===========================================
+
+if (!hay_datos || is.null(df) || nrow(df) == 0) {
+
+  texto <- "No se registraron individuos de fauna durante el periodo evaluado.\n"
+
+} else {
+
+  texto <- generar_texto(df, tabla, MES, AÑO)
+
+}
+```
+
+`r texto`
+
+```{r}
+#| label: tbl-clase-manejo
+#| tbl-cap: !expr paste0("Abundancias por tipo de manejo y clase de fauna en el mes de ",MES, " de ", AÑO, ".")
+#| tbl-pos: H
+#| results: asis
+
+# ===========================================
+# CARGA DE LIBRERÍAS
+# ===========================================
+
+library(dplyr) # Manipulación de datos
+library(knitr) # Generar tablas
+library(kableExtra) # Mejorar tablas
+
+tab_clase_manejo <- read.csv("../outputs/tables/tabla_clase_manejo.csv")
+
+# Asegurar numéricos
+tab_clase_manejo <- tab_clase_manejo %>%
+  mutate(across(-Clase, as.numeric))
+
+# identificar fila total
+fila_total <- which(tab_clase_manejo$Clase == "Total")
+
+# construir tabla
+tabla <- knitr::kable(
+  tab_clase_manejo,
+  format = "latex",
+  booktabs = TRUE,
+  align = "c"
+)
+
+# estilos
+tabla <- tabla %>%
+  
+  kableExtra::kable_styling(
+    latex_options = c("hold_position"),
+    font_size = 9
+  ) %>%
+  # encabezado
+  kableExtra::row_spec(0, bold = TRUE) %>%
+  # columna Total
+  kableExtra::column_spec(
+    which(colnames(tab_clase_manejo) == "Total"),
+    bold = TRUE
+  )
+
+# fila total
+if (length(fila_total) > 0) {
+  tabla <- tabla %>%
+    kableExtra::row_spec(
+      fila_total - 1,
+      extra_latex_after = "\\midrule"
+    ) %>%
+    kableExtra::row_spec(
+      fila_total,
+      bold = TRUE
+    )
+}
+
+print(tabla)
+
+```
+
+\begin{flushleft}
+
+\footnotesize
+
+\textit{Fuente:} Ecoambiente Solar, `r AÑO`.
+
+\end{flushleft}
+
+\normalsize
+
+![Riqueza taxonómica **(A)**, abundancia por clase y tipo de manejo **(B)**, y abundancia relativa por actividad **(C)** en el mes de `r MES` de `r AÑO`.](../outputs/figures/figura_general.png){#fig-general fig-align="center" width="688"}
+
+\begin{flushleft}
+
+\footnotesize
+
+\textit{Fuente:} Ecoambiente Solar, `r AÑO`.
+
+\end{flushleft}
+
+\normalsize
+
+## Resultados del manejo de fauna por grupo taxonómico
+
+```{r}
+#| label: Configuración inicial y creación de funciones
+
+# ===========================================
+# DEFINICIÓN DE GRUPOS BIOLÓGICOS
+# ===========================================
+grupos <- list(
+  anfibios = "Amphibia",
+  reptiles = "Reptilia",
+  aves = "Aves",
+  mamiferos = "Mammalia"
+)
+
+# ===========================================
+# FUNCIÓN: PLURALIZAR PALABRAS
+# ===========================================
+
+pluralizar <- function(n, singular, plural) {
+  if (n == 1) singular else plural
+}
+
+# ===========================================
+# FUNCIÓN: TOP N CON EMPATES Y DOMINANCIA
+# ===========================================
+
+top_n_con_empates <- function(df, var, n = 3, es_especie = FALSE) {
+  
+  resumen <- df %>%
+    mutate(valor = trimws(.data[[var]])) %>%
+    group_by(valor) %>%
+    summarise(total = sum(Abundancia), .groups = "drop") %>%
+    arrange(desc(total))
+  
+  if (nrow(resumen) == 0) {
+    return(list(texto = NULL, n = 0))
+  }
+  
+  max_val <- max(resumen$total)
+  
+  # =========================
+  # SOLO UNA CATEGORÍA
+  # =========================
+  if (nrow(resumen) == 1) {
+    
+    nombre <- resumen$valor[1]
+    
+    if (es_especie) {
+      nombre <- paste0("\\textit{", nombre, "}")
+    }
+    
+    texto <- paste0(nombre, " (n = ", max_val, ")")
+    
+    # aclaración de única
+    if (es_especie) {
+      texto <- paste0(texto, ", siendo la única especie registrada")
+    } else {
+      texto <- paste0(texto, ", siendo el único sitio con registros")
+    }
+    
+    return(list(texto = texto, n = 1))
+  }
+  
+  # =========================
+  # DOMINANCIA RELATIVA (≥70%)
+  # =========================
+  umbral <- 0.7 * max_val
+  
+  top <- resumen %>%
+    filter(total >= umbral) %>%
+    distinct(valor, .keep_all = TRUE)
+  
+  mostrar <- top %>% slice(1:min(n, nrow(top)))
+  restantes <- nrow(top) - nrow(mostrar)
+  
+  # =========================
+  # CONSTRUIR NOMBRES
+  # =========================
+  lista_nombres <- mostrar %>%
+    mutate(
+      nombre = if (es_especie) {
+        paste0("\\textit{", valor, "}")
+      } else {
+        valor
+      }
+    ) %>%
+    pull(nombre)
+  
+  texto <- formatear_lista(lista_nombres)
+  
+  # =========================
+  # RESTANTES
+  # =========================
+  if (restantes > 0) {
+    
+    tipo_extra <- if (es_especie) {
+      if (restantes == 1) "otra especie" else paste0("otras ", restantes, " especies")
+    } else {
+      if (restantes == 1) "otra área" else paste0("otras ", restantes, " áreas")
+    }
+    
+    texto <- paste0(texto, " y ", tipo_extra)
+  }
+  
+  # =========================
+  # EMPATES VS DOMINANCIA
+  # =========================
+  if (length(unique(mostrar$total)) == 1 && nrow(mostrar) > 1) {
+    
+    # EMPATE REAL
+    lista_nombres <- mostrar %>%
+      mutate(
+        nombre = if (es_especie) {
+          paste0("\\textit{", valor, "}")
+        } else {
+          valor
+        }
+      ) %>%
+      pull(nombre)
+    
+    texto <- paste0(
+      formatear_lista(lista_nombres),
+      ", ",
+      ifelse(nrow(mostrar) == 2, "ambas", "todas"),
+      " con igual ",
+      ifelse(es_especie, "abundancia", "número de individuos"),
+      " (n = ", mostrar$total[1], ")"
+    )
+    
+  } else {
+    
+    # DOMINANCIA NORMAL (con n = x por cada uno)
+    lista_txt <- mostrar %>%
+      mutate(
+        nombre = if (es_especie) {
+          paste0("\\textit{", valor, "}")
+        } else {
+          valor
+        },
+        txt = paste0(nombre, " (n = ", total, ")")
+      ) %>%
+      pull(txt)
+    
+    texto <- formatear_lista(lista_txt)
+  }
+  
+  return(list(texto = texto, n = nrow(mostrar)))
+}
+
+# ==============================================
+# FUNCIÓN PRINCIPAL: TEXTO POR GRUPO FAUNÍSTICO
+# ==============================================
+
+generar_texto_grupo <- function(df, grupo, mes, año, manejo) {
+
+  df_filtrado <- df %>%
+    filter(Clase %in% grupos[[grupo]], Manejo == manejo)
+  
+  # =========================
+  # REUBICACIÓN (solo rescate)
+  # =========================
+  texto_reubicacion <- ""
+  
+  if (manejo == "Rescate") {
+    
+    df_rescate <- df_filtrado %>%
+      filter(!is.na(Reubicado))
+    
+    total_rescatados <- sum(df_rescate$Abundancia, na.rm = TRUE)
+    
+    total_reubicados <- df_rescate %>%
+      filter(tolower(Reubicado) == "si") %>%
+      summarise(total = sum(Abundancia, na.rm = TRUE)) %>%
+      pull(total)
+    
+    if (total_rescatados > 0) {
+      
+      if (total_reubicados == total_rescatados) {
+        
+        texto_reubicacion <- ifelse(
+          total_rescatados == 1,
+          "El individuo rescatado fue reubicado exitosamente en las áreas dispuestas para este fin.",
+          "Todos los individuos rescatados fueron reubicados exitosamente en las áreas dispuestas para este fin."
+      )
+        
+      } else {
+        
+        texto_reubicacion <- paste0(
+          "De ",
+          ifelse(total_rescatados == 1, "1 individuo rescatado", paste0("los ", total_rescatados, " individuos rescatados")),
+          ", ",
+          total_reubicados, " ",
+          ifelse(total_reubicados == 1, "fue reubicado", "fueron reubicados"),
+          " exitosamente en las áreas dispuestas para este fin."
+        )
+      }
+    }
+  }
+
+  if (nrow(df_filtrado) == 0) {
+    return(paste0(
+      "No se registraron individuos de ", grupo,
+      " mediante ", tolower(manejo),
+      " durante el mes de ", mes, " de ", año, "."
+    ))
+  }
+
+  clases <- unique(df_filtrado$Clase)
+  solo_una_clase <- length(clases) == 1
+  
+  textos_clase <- c()
+
+  for (i in seq_along(clases)) {
+
+    clase <- clases[i]
+    df_clase <- df_filtrado %>% filter(Clase == clase)
+
+    total <- sum(df_clase$Abundancia)
+
+    n_sp <- n_distinct(df_clase$Especie)
+    n_fam <- n_distinct(df_clase$Familia)
+    n_ord <- n_distinct(df_clase$Orden)
+
+    especie_top <- top_n_con_empates(df_clase, "Especie", 3, TRUE)
+    area_top <- top_n_con_empates(df_clase, "Area", 3, FALSE)
+    
+    # referencias dinámicas
+    ref_tabla <- paste0("**", "@tbl-", grupo, "-", tolower(manejo), "**")
+    ref_fig   <- paste0("**", "@fig-", grupo, "-", tolower(manejo), "**")
+
+    # especie singular/plural
+    if (especie_top$n == 1) {
+      txt_especie <- paste0("La especie más abundante fue ", especie_top$texto)
+    } else {
+      txt_especie <- paste0("Las especies más abundantes fueron ", especie_top$texto)
+    }
+
+    # =========================
+    # CASO HERPETOS CON UNA SOLA CLASE
+    # =========================
+    if (grupo == "herpetofauna" && solo_una_clase) {
+      texto_clase <- paste0(
+        "se registraron ", total,
+        " individuos, correspondientes en su totalidad a la clase ", clase, ", donde se registraron ",
+        n_sp, " ", pluralizar(n_sp, "especie", "especies"), ", ",
+        n_fam, " ", pluralizar(n_fam, "familia", "familias"), " y ",
+        n_ord, " ", pluralizar(n_ord, "orden", "órdenes"), " (", ref_tabla, "). ", 
+        txt_especie,
+        " (", ref_fig, "**A**). ",
+        "La mayor abundancia se registró en ", area_top$texto, " (", ref_fig, "**B**)." 
+      )
+
+    } else {
+
+      # CONTROL CORRECTO DE MAYÚSCULAS
+      if (solo_una_clase) {
+        inicio_clase <- ""
+      } else if (i == 1) {
+        inicio_clase <- paste0("en la clase ", clase, " ")
+      } else {
+        inicio_clase <- paste0("En la clase ", clase, " ")
+      }
+
+      texto_clase <- paste0(
+        inicio_clase,
+        "se registr",
+        ifelse(total == 1, "ó ", "aron "),
+        total, " ",
+        pluralizar(total, "individuo", "individuos"),
+        " en ",
+        n_sp, " ", pluralizar(n_sp, "especie", "especies"), ", ",
+        n_fam, " ", pluralizar(n_fam, "familia", "familias"), " y ",
+        n_ord, " ", pluralizar(n_ord, "orden", "órdenes"),
+        " (", ref_tabla, "). ", 
+        txt_especie,
+        " (", ref_fig, "**A**). ",
+        "La mayor abundancia se registró en ", area_top$texto,
+        " (", ref_fig, "**B**)."
+      )
+    }
+
+    textos_clase <- c(textos_clase, texto_clase)
+  }
+
+  # ============================
+  # HERPETOS: CLASES FALTANTES
+  # ============================
+  textos_faltantes <- c()
+
+  if (grupo == "herpetofauna") {
+
+    clases_esperadas <- c("Amphibia", "Reptilia")
+    faltantes <- setdiff(clases_esperadas, clases)
+
+    for (cl in faltantes) {
+      textos_faltantes <- c(
+        textos_faltantes,
+        paste0("No se registraron individuos de la clase ", cl, ".")
+      )
+    }
+  }
+
+  # =========================
+  # TEXTO FINAL
+  # =========================
+  texto_final <- paste0(
+    "Durante el mes de ", mes, " de ", año,
+    ", en las actividades de ", tolower(manejo),
+    " de ", grupo, ", ",
+    paste(textos_clase, collapse = "\n\n"),
+    ifelse(length(textos_faltantes) > 0,
+           paste0(" ", paste(textos_faltantes, collapse = " ")),
+           ""),
+    ifelse(texto_reubicacion != "",
+         paste0(" ", texto_reubicacion),
+         "")
+  )
+
+  return(texto_final)
+}
+
+# ===========================================
+# FUNCIÓN: TEXTO DE CONSERVACIÓN 
+# ===========================================
+
+generar_texto_conservacion <- function(df, grupo, mes, año) {
+  
+  if (nrow(df) == 0) return(NULL)
+
+  # LIMPIEZA Y CLASIFICACIÓN
+  df_sp <- df %>%
+    distinct(Especie, IUCN, CITES, Distribucion) %>%
+    mutate(
+      IUCN_clean = case_when(
+        grepl("LC", IUCN) ~ "LC",
+        grepl("NT", IUCN) ~ "NT",
+        grepl("VU", IUCN) ~ "VU",
+        grepl("EN", IUCN) ~ "EN",
+        grepl("CR", IUCN) ~ "CR",
+        grepl("NE", IUCN) ~ "NE",
+        grepl("DD", IUCN) ~ "DD",
+        TRUE ~ "OTRO"
+      ),
+      # Traducción de siglas para fluidez
+      IUCN_label = case_when(
+        IUCN_clean == "VU" ~ "Vulnerable",
+        IUCN_clean == "EN" ~ "En Peligro",
+        IUCN_clean == "CR" ~ "En Peligro Crítico",
+        TRUE ~ ""
+      ),
+      CITES_clean = gsub("Apéndice ", "", CITES),
+      # Clasificación exacta de endemismo
+      Tipo_Endemismo = case_when(
+        grepl("Casi Endémica", Distribucion, ignore.case = TRUE) ~ "casi endémica",
+        grepl("Endémica", Distribucion, ignore.case = TRUE) ~ "endémica",
+        TRUE ~ "No"
+      )
+    )
+
+  # ===========================================
+  # LÓGICA UICN
+  # ===========================================
+  total_sp <- nrow(df_sp)
+  n_lc <- sum(df_sp$IUCN_clean == "LC")
+  prop_lc <- n_lc / total_sp
+  
+  # Base del texto (IUCN al principio para que fluya mejor)
+  if (prop_lc == 1) {
+    texto_iucn <- paste0("Según la UICN, para el mes de ", mes, " de ", año, ", todas las especies registradas se encuentran en Preocupación Menor (LC).")
+  } else if (prop_lc > 0.5) {
+    texto_iucn <- paste0("Según la UICN, para el mes de ", mes, " de ", año, ", la mayoría de las especies se encuentran en Preocupación Menor (LC).")
+  } else {
+    texto_iucn <- paste0("Para el mes de ", mes, " de ", año, ", se registraron diversas categorías de conservación según la UICN.")
+  }
+
+  # Especies en riesgo (VU, EN, CR)
+  riesgo <- df_sp %>% filter(IUCN_clean %in% c("VU", "EN", "CR"))
+  
+  if (nrow(riesgo) > 0) {
+    # Creamos el texto
+    lista_riesgo <- paste0("\\textit{", riesgo$Especie, "} (", riesgo$IUCN_label, " - ", riesgo$IUCN_clean, ")")
+    u_sp_r <- tail(riesgo$Especie, 1)
+    con_r <- if(grepl("^[Ii]|^[Hh][Ii]", u_sp_r)) " e " else " y "
+    
+    # Construcción de la frase 
+    v_identificar <- if(nrow(riesgo) == 1) "se identificó la especie " else "se identificaron las especies "
+    
+    texto_iucn <- paste0(texto_iucn, " No obstante, ", v_identificar, 
+                         knitr::combine_words(lista_riesgo, and = con_r, sep = ", "), ".")
+  }
+
+  # ===========================================
+  # LÓGICA CITES
+  # ===========================================
+  cites_df <- df_sp %>% filter(!is.na(CITES) & CITES != "NA" & CITES != "" & CITES != "NONE")
+  
+  if (nrow(cites_df) > 0) {
+    # Solo el número en el paréntesis para no repetir "Apéndice"
+    lista_cites <- paste0("\\textit{", cites_df$Especie, "} (", cites_df$CITES_clean, ")")
+    u_sp_c <- tail(cites_df$Especie, 1)
+    con_c <- if(grepl("^[Ii]|^[Hh][Ii]", u_sp_c)) " e " else " y "
+    
+    texto_cites <- paste0("En cuanto al convenio CITES, se ", 
+                          if(nrow(cites_df) == 1) "incluye en sus apéndices a " else "incluyen en sus apéndices a ", 
+                          knitr::combine_words(lista_cites, and = con_c, sep = ", "), ".")
+  } else {
+    texto_cites <- "No se reportaron especies bajo la convención CITES."
+  }
+
+  # ===========================================
+  # LÓGICA DE ENDEMISMO
+  # ===========================================
+  endemicas <- df_sp %>% filter(Tipo_Endemismo != "No")
+  
+  if (nrow(endemicas) > 0) {
+    # Aquí especificamos si es endémica o casi endémica individualmente
+    lista_endo <- paste0("\\textit{", endemicas$Especie, "} (", endemicas$Tipo_Endemismo, ")")
+    u_sp_e <- tail(endemicas$Especie, 1)
+    con_e <- if(grepl("^[Ii]|^[Hh][Ii]", u_sp_e)) " e " else " y "
+    
+    texto_endemismo <- paste0("Respecto al grado de endemismo, se documentó la presencia de ", 
+                              knitr::combine_words(lista_endo, and = con_e, sep = ", "), ".")
+  } else {
+    texto_endemismo <- "No se registraron especies con grado de endemismo para el país."
+  }
+
+  # UNIÓN FINAL
+  return(paste(texto_iucn, texto_cites, texto_endemismo, sep = " "))
+}
+```
+
+```{python}
+#| label: funciones_python
+#| echo: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# =========================
+# FUNCIONES
+# =========================
+
+def build_tabla_detalle(df):
+
+    if df.empty:
+        print("Sin datos para tabla detallada")
+        return None
+
+    # ===========================================
+    # METADATA POR ESPECIE
+    # ===========================================
+
+    meta = (
+        df
+        .drop_duplicates(subset=["Especie"])
+        .set_index("Especie")[
+            ["Nombre_comun", "CITES", "IUCN", "Distribucion"]
+        ]
+    )
+
+    # ===========================================
+    # AGRUPACIÓN BASE
+    # ===========================================
+
+    conteos = (
+        df
+        .groupby([
+            "Manejo",
+            "Clase",
+            "Orden",
+            "Familia",
+            "Especie",
+            "Area"
+        ])["Abundancia"]
+        .sum()
+        .reset_index()
+    )
+
+    # ===========================================
+    # PIVOT DE ÁREAS
+    # ===========================================
+
+    tabla = (
+        conteos
+        .pivot_table(
+            index=[
+                "Manejo",
+                "Clase",
+                "Orden",
+                "Familia",
+                "Especie"
+            ],
+            columns="Area",
+            values="Abundancia",
+            fill_value=0
+        )
+        .reset_index()
+    )
+
+    tabla.columns.name = None
+
+    # ===========================================
+    # MERGE METADATA
+    # ===========================================
+
+    tabla = tabla.merge(
+        meta,
+        on="Especie",
+        how="left"
+    )
+    
+    # =========================
+    # NORMALIZAR CATEGORÍAS
+    # =========================
+    
+    # CITES
+    map_cites = {
+        "Apéndice I": "I",
+        "Apéndice II": "II",
+        "Apéndice III": "III"
+    }
+    # IUCN
+    map_iucn = {
+        "Preocupación Menor (LC)": "LC",
+        "Casi Amenazado (NT)": "NT",
+        "Vulnerable (VU)": "VU",
+        "En Peligro (EN)": "EN",
+        "En Peligro Critico (CR)": "CR",
+        "Datos insuficientes (DD)": "DD",
+        "No Evaluado (NE)": "NE"
+    }
+    
+    #Distribución
+    map_dist = {
+        "Endémica": "EN",
+        "Casi endémica": "CE",
+        "Restringida": "RE",
+        "Residente": "RE",
+        "Cosmopolita": "C"
+    }
+    
+    tabla["IUCN"] = tabla["IUCN"].replace(map_iucn)
+    tabla["Distribucion"] = tabla["Distribucion"].replace(map_dist)
+    
+    # CITES → NA como guión largo
+    tabla["CITES"] = tabla["CITES"].map(map_cites).fillna("—")
+
+    # ===========================================
+    # IDENTIFICAR ÁREAS
+    # ===========================================
+
+    cols_fijas = [
+        "Manejo","Clase","Orden","Familia","Especie",
+        "Nombre_comun","CITES","IUCN","Distribucion"
+    ]
+
+    areas = [c for c in tabla.columns if c not in cols_fijas]
+
+    # ===========================================
+    # TOTAL POR FILA
+    # ===========================================
+
+    tabla["Total"] = tabla[areas].sum(axis=1)
+
+    # ===========================================
+    # ORDENAR
+    # ===========================================
+
+    tabla = tabla.sort_values(
+        by=["Clase","Manejo","Orden","Familia","Especie"]
+    )
+
+    # ===========================================
+    # JERARQUÍA TAXONÓMICA
+    # ===========================================
+
+    tabla_partes = []
+
+    for (manejo, clase), df_sub in tabla.groupby(["Manejo","Clase"]):
+
+        for orden in df_sub["Orden"].dropna().unique():
+
+            sub_ord = df_sub[df_sub["Orden"] == orden]
+
+            # -------- ORDEN --------
+            fila_orden = pd.DataFrame({
+                "Taxon":[f"\\textbf{{Orden {orden}}}"],
+                "Nombre_comun":[""],
+                "CITES":[""],
+                "IUCN":[""],
+                "Distribucion":[""],
+                **{a:"" for a in areas},
+                "Total":[""]
+            })
+
+            tabla_temp = fila_orden.copy()
+
+            for familia in sub_ord["Familia"].dropna().unique():
+
+                sub_fam = sub_ord[sub_ord["Familia"] == familia]
+
+                # -------- FAMILIA --------
+                fila_fam = pd.DataFrame({
+                    "Taxon":[f"\\hspace{{3mm}}\\textbf{{Familia {familia}}}"],
+                    "Nombre_comun":[""],
+                    "CITES":[""],
+                    "IUCN":[""],
+                    "Distribucion":[""],
+                    **{a:"" for a in areas},
+                    "Total":[""]
+                })
+
+                tabla_temp = pd.concat([tabla_temp, fila_fam], ignore_index=True)
+
+                # -------- ESPECIES --------
+                especies = sub_fam.copy()
+
+                especies["Taxon"] = "\\hspace{6mm}\\textit{" + especies["Especie"] + "}"
+
+                especies = especies[
+                    ["Taxon","Nombre_comun","CITES","IUCN","Distribucion"]
+                    + areas + ["Total"]
+                ]
+
+                tabla_temp = pd.concat([tabla_temp, especies], ignore_index=True)
+
+            tabla_partes.append(tabla_temp)
+
+    tabla_final = pd.concat(tabla_partes, ignore_index=True)
+
+    # ===========================================
+    # TOTAL GENERAL + RESUMEN TAXONÓMICO
+    # ===========================================
+    
+    nums = tabla[areas].apply(pd.to_numeric, errors="coerce")
+    totales = nums.sum()
+    
+    # resumen taxonómico
+    n_ordenes = df["Orden"].nunique()
+    n_familias = df["Familia"].nunique()
+    n_especies = df["Especie"].nunique()
+    
+    def plural(n, singular, plural):
+        return singular if n == 1 else plural
+
+    texto_total = (
+        f"Total: "
+        f"{n_ordenes} {plural(n_ordenes, 'orden', 'órdenes')}, "
+        f"{n_familias} {plural(n_familias, 'familia', 'familias')}, "
+        f"{n_especies} {plural(n_especies, 'especie', 'especies')}"
+    )
+    
+    # UNA sola fila final
+    total_row = pd.DataFrame({
+        "Taxon":[texto_total],
+        "Nombre_comun":[""],
+        "CITES":[""],
+        "IUCN":[""],
+        "Distribucion":[""],
+        **totales.to_dict(),
+        "Total":[int(totales.sum())]
+    })
+    
+    tabla_final = pd.concat([tabla_final, total_row], ignore_index=True)
+    
+    # ===========================================
+    # LIMPIEZA VISUAL
+    # ===========================================
+    
+    # identificar filas de especies (las que tienen datos reales)
+    mask_especies = tabla_final["Nombre_comun"] != ""
+    mask_total = tabla_final["Taxon"].str.contains("Total", na=False)
+    
+    for col in areas + ["Total"]:
+
+      tabla_final[col] = pd.to_numeric(tabla_final[col], errors="coerce")
+      tabla_final[col] = tabla_final[col].astype(object)
+      
+      # especies → valores normales
+      tabla_final.loc[mask_especies, col] = (
+          tabla_final.loc[mask_especies, col]
+          .fillna(0)
+          .astype(int)
+          .astype(str)
+          .replace("0", "—")
+      )
+      
+      # totales → SIEMPRE mostrar número
+      tabla_final.loc[mask_total, col] = (
+          tabla_final.loc[mask_total, col]
+          .fillna(0)
+        .astype(int)
+        .astype(str)
+      )
+      
+      # jerárquicas → vacío
+      tabla_final.loc[~mask_especies & ~mask_total, col] = ""
+    
+    return tabla_final
+
+def plot_top_ax(df, variable, ax):
+
+    resumen = (
+        df
+        .groupby(variable)["Abundancia"]
+        .sum()
+        .sort_values(ascending=False)
+    )
+
+    if resumen.empty:
+        ax.text(0.5, 0.5, "Sin datos", ha="center", va="center")
+        ax.axis('off')
+        return
+
+    resumen.plot(
+        kind="barh",
+        color="#2E7D32",
+        ax=ax
+    )
+
+    ax.invert_yaxis()
+
+    # estilos
+    ax.set_xlabel("Abundancia", fontweight="bold", fontsize=12)
+    label_y = "Área" if variable == "Area" else variable
+    ax.set_ylabel(label_y, fontweight="bold", fontsize=12)
+    # tamaño de labels (nombres de especies / áreas)
+    ax.tick_params(axis='y', labelsize=12)
+    ax.tick_params(axis='x', labelsize=10)
+
+    # cursiva para especies
+    if variable == "Especie":
+        for label in ax.get_yticklabels():
+            label.set_fontstyle("italic")
+
+    # etiquetas
+    for container in ax.containers:
+        ax.bar_label(container, fmt="%d", fontsize=11, padding=3)
+
+    ax.set_title("")
+    
+    # ampliar eje X
+    max_val = resumen.max()
+    ax.set_xlim(0, max_val * 1.15)
+
+def plot_top_general(df, filename=None):
+
+    # =========================
+    # ALTURA DINÁMICA
+    # =========================
+    n_especies = df["Especie"].nunique()
+    altura = max(6, n_especies * 0.4)
+
+    fig, axes = plt.subplots(1, 2, figsize=(14, altura))
+
+    axA, axB = axes
+
+    plot_top_ax(df, "Especie", axA)
+    plot_top_ax(df, "Area", axB)
+
+    fig.text(0.01, 0.95, "A", fontsize=18, fontweight="bold")
+    fig.text(0.57, 0.95, "B", fontsize=18, fontweight="bold")
+
+    plt.tight_layout()
+
+    if filename:
+        plt.savefig(filename, dpi=300, bbox_inches="tight")
+        plt.close(fig)
+    else:
+        plt.show()
+```
+
+```{r}
+#| label: secciones-grupo-fauna
+#| results: asis
+
+library(reticulate)
+
+fig_dir <- "../outputs/figures"
+dir.create(fig_dir, recursive = TRUE, showWarnings = FALSE)
+
+generar_caption <- function(grupo, manejo, mes, año, tipo = "figura") {
+  
+  grupo_txt <- switch(grupo,
+    anfibios = "anfibios",
+    reptiles = "reptiles",
+    aves = "aves",
+    mamiferos = "mamíferos",
+    grupo
+  )
+  
+  if (tipo == "figura") {
+    
+    return(
+      paste0(
+        "Abundancia de ", grupo_txt, " ",
+        ifelse(manejo == "Rescate", "rescatados", "ahuyentados"),
+        " en el mes de ", tolower(mes), " de ", año, ". ",
+        "**A**. Distribución de abundancias por especies. ",
+        "**B**. Distribución de abundancias por áreas."
+      )
+    )
+    
+  } else if (tipo == "tabla") {
+    
+    return(
+      paste0(
+        "Registro de ", grupo_txt, " ",
+        ifelse(manejo == "Rescate", "rescatados", "ahuyentados"),
+        " por áreas durante el mes de ", tolower(mes), " de ", año,
+        " e información de estado de conservación y distribución."
+      )
+    )
+  }
+}
+
+for (nombre in names(grupos)) {
+
+  # ======================
+  # AHUYENTAMIENTO
+  # ======================
+
+  df_ahu <- df %>%
+    filter(Clase %in% grupos[[nombre]], Manejo == "Ahuyentamiento")
+
+  texto_ahu <- generar_texto_grupo(df, nombre, MES, AÑO, "Ahuyentamiento")
+
+  cat("\n\n### Ahuyentamiento de ", nombre, "\n\n", sep="")
+  cat(texto_ahu, "\n\n")
+
+  if (nrow(df_ahu) > 0) {
+
+    py$df_sub <- df_ahu
+
+    # TABLA
+    py_run_string("tabla = build_tabla_detalle(df_sub)")
+    tabla_py <- py$tabla
+    tabla_py$Total <- paste0("\\textbf{", tabla_py$Total, "}")
+
+    if (!is.null(tabla_py)) {
+    
+      # =========================
+      # IDENTIFICAR COLUMNAS ÁREAS
+      # =========================
+      areas_cols <- setdiff(
+        colnames(tabla_py),
+        c("Taxon","Nombre_comun","CITES","IUCN","Distribucion","Total")
+      )
+    
+      # =========================
+      # CAPTION DINÁMICO
+      # =========================
+      caption_tabla <- generar_caption(nombre, "Ahuyentamiento", MES, AÑO, "tabla")
+    
+      colnames(tabla_py)[3:5] <- c(
+        "\\rotatebox{90}{\\textbf{CITES}}",
+        "\\rotatebox{90}{\\textbf{IUCN}}",
+        "\\rotatebox{90}{\\textbf{Distribución}}"
+      )
+      
+      colnames(tabla_py)[colnames(tabla_py) %in% areas_cols] <-
+        paste0("\\rotatebox{90}{", areas_cols, "}")
+      
+      colnames(tabla_py)[colnames(tabla_py) == "Taxon"] <- "Taxones"
+      
+      # corregir underscore para LaTeX
+      colnames(tabla_py)[colnames(tabla_py) == "Nombre_comun"] <- "Nombre común"
+      
+      # =========================
+      # TABLA FORMATEADA
+      # =========================
+      tabla_kable <- knitr::kable(
+        tabla_py,
+        format = "latex",
+        booktabs = TRUE,
+        longtable = TRUE,
+        escape = FALSE,
+        align = c("l", "l", "c", "c", "c", rep("c", length(areas_cols)), "c"),
+        caption = caption_tabla,
+        label = paste0("tbl-", nombre, "-ahuyentamiento")
+      ) %>%
+        kableExtra::kable_styling(
+          latex_options = c("hold_position", "repeat_header","scale_down"),
+          font_size = 9,
+          repeat_header_text = "Continuación",
+          repeat_header_method = "replace"
+        ) %>%
+        kableExtra::column_spec(3:5, width = "0.8cm") %>%
+        kableExtra::add_header_above(
+          c(
+            " " = 2,
+            "Categoría conservación" = 3,
+            "Áreas" = length(areas_cols),
+            " " = 1
+          ),
+          bold = TRUE
+        ) %>%
+        kableExtra::row_spec(0, bold = TRUE) %>%
+        kableExtra::row_spec(nrow(tabla_py), bold = TRUE) %>%
+      kableExtra::row_spec(nrow(tabla_py), bold = TRUE) %>%
+      kableExtra::row_spec(
+        nrow(tabla_py) - 1,
+        hline_after = TRUE
+      )
+      
+    # =========================
+    # IMPRESIÓN
+    # =========================
+    usar_landscape <- length(areas_cols) > 4
+    
+    if (usar_landscape) cat("\\begin{landscape}\n")
+    
+    # Escribimos 'ahuyentamiento' directamente
+    cat("\n::: {#tbl-", nombre, "-ahuyentamiento}\n", sep="")
+    
+    cat("\\begingroup\n")
+    cat("\\setstretch{1.1}\n")
+    
+    print(tabla_kable)
+    
+    cat("\\endgroup\n")
+
+    cat("\n", caption_tabla, "\n", sep="") 
+    cat(":::\n")
+    
+    
+    cat("\\vspace{2pt}\n")
+    
+    cat("\\begingroup\n")
+    cat("\\setstretch{1.1}\n")
+    
+    # =========================
+    # FUENTE
+    # =========================
+    cat("\\noindent \\footnotesize \\textit{Fuente:} Ecoambiente Solar, ", AÑO, ".\n\n", sep = "")
+    
+    # =========================
+    # NOTA
+    # =========================
+    cat(
+    "\\noindent \\footnotesize \\textit{Nota:} ",
+    "\\textbf{CITES}:I, II, III = Apéndices de protección según nivel de amenaza. ",
+    "\\textbf{UICN}:LC = Preocupación Menor; NT = Casi Amenazado; VU = Vulnerable; EN = En Peligro; CR = En Peligro Crítico; DD = Datos Insuficientes; NE = No Evaluado. ",
+    "\\textbf{Distribución}:EN = Endémica; CE = Casi Endémica; RE = Restringida; C = Cosmopolita.",
+    " \\normalsize\n",
+    sep = ""
+    )
+    
+    cat("\\endgroup\n")
+    
+    if (usar_landscape) cat("\\end{landscape}\n")
+    cat("\n\n")
+    }
+
+    # FIGURA
+    file_ahu <- file.path(fig_dir, paste0("fig_", nombre, "_ahuyentamiento.png"))
+
+    py$plot_top_general(py$df_sub, file_ahu)
+    
+    caption_ahu <- generar_caption(nombre, "Ahuyentamiento", MES, AÑO)
+
+    cat(
+      "![",
+      caption_ahu,
+      "](",
+      file_ahu,
+      " ){#fig-", nombre, "-ahuyentamiento}\n\n",
+      sep = ""
+    )
+    cat("\\begingroup\n")
+    cat("\\setstretch{1.1}\n")
+        
+    cat("\\noindent \\footnotesize \\textit{Fuente:} Ecoambiente Solar, ", AÑO, ".\n", sep = "")
+    
+    cat("\\endgroup\n\n")
+  }
+
+  # ======================
+  # RESCATE
+  # ======================
+  
+  df_res <- df %>%
+    filter(Clase %in% grupos[[nombre]], Manejo == "Rescate")
+  
+  texto_res <- generar_texto_grupo(df, nombre, MES, AÑO, "Rescate")
+  
+  cat("\n\n### Rescate y reubicación de ", nombre, "\n\n", sep="")
+  cat(texto_res, "\n\n")
+  
+  if (nrow(df_res) > 0) {
+  
+    py$df_sub <- df_res
+  
+    # TABLA
+    py_run_string("tabla = build_tabla_detalle(df_sub)")
+    tabla_py <- py$tabla
+    tabla_py$Total <- paste0("\\textbf{", tabla_py$Total, "}")
+  
+    if (!is.null(tabla_py)) {
+  
+      # =========================
+      # IDENTIFICAR COLUMNAS ÁREAS
+      # =========================
+      areas_cols <- setdiff(
+        colnames(tabla_py),
+        c("Taxon","Nombre_comun","CITES","IUCN","Distribucion","Total")
+      )
+  
+      # =========================
+      # CAPTION
+      # =========================
+      caption_tabla <- generar_caption(nombre, "Rescate", MES, AÑO, "tabla")
+  
+      # =========================
+      # ARREGLOS LATEX
+      # =========================
+      colnames(tabla_py)[3:5] <- c(
+        "\\rotatebox{90}{\\textbf{CITES}}",
+        "\\rotatebox{90}{\\textbf{IUCN}}",
+        "\\rotatebox{90}{\\textbf{Distribución}}"
+      )
+    
+      colnames(tabla_py)[colnames(tabla_py) %in% areas_cols] <-
+        paste0("\\rotatebox{90}{", areas_cols, "}")
+      
+      colnames(tabla_py)[colnames(tabla_py) == "Taxon"] <- "Taxones"
+      
+      # corregir underscore para LaTeX
+      colnames(tabla_py)[colnames(tabla_py) == "Nombre_comun"] <- "Nombre común"
+  
+      # =========================
+      # TABLA FORMATEADA
+      # =========================
+      tabla_kable <- knitr::kable(
+        tabla_py,
+        format = "latex",
+        booktabs = TRUE,
+        longtable = TRUE,
+        escape = FALSE,
+        align = c("l", "l", "c", "c", "c", rep("c", length(areas_cols)), "c"),
+        caption = caption_tabla,
+        label = paste0("tbl-", nombre, "-rescate")
+      ) %>%
+        kableExtra::kable_styling(
+          latex_options = c("hold_position", "repeat_header","scale_down"),
+          font_size = 9,
+          repeat_header_text = "Continuación",
+          repeat_header_method = "replace"
+        ) %>%
+        kableExtra::column_spec(3:5, width = "0.8cm") %>%
+        kableExtra::add_header_above(
+          c(
+            " " = 2,
+            "Categoría conservación" = 3,
+            "Áreas" = length(areas_cols),
+            " " = 1
+          ),
+          bold = TRUE
+        ) %>%
+        kableExtra::row_spec(0, bold = TRUE) %>%
+        kableExtra::row_spec(nrow(tabla_py), bold = TRUE) %>%
+      kableExtra::row_spec(
+        nrow(tabla_py) - 1,
+        hline_after = TRUE
+      )
+    # =========================
+    # IMPRESIÓN
+    # =========================
+    usar_landscape <- length(areas_cols) > 4
+    
+    if (usar_landscape) cat("\\begin{landscape}\n")
+    
+    # Escribimos 'rescate' directamente
+    cat("\n::: {#tbl-", nombre, "-rescate}\n", sep="")
+    
+    cat("\\begingroup\n")
+    cat("\\setstretch{1.1}\n")
+    
+    print(tabla_kable)
+    
+    cat("\\endgroup\n")
+
+    cat("\n", caption_tabla, "\n", sep="") 
+    cat(":::\n")
+      
+    
+    cat("\\vspace{2pt}\n")
+    
+    cat("\\begingroup\n")
+    cat("\\setstretch{1.1}\n")
+    
+    # =========================
+    # FUENTE
+    # =========================
+    cat("\\noindent \\footnotesize \\textit{Fuente:} Ecoambiente Solar, ", AÑO, ".\n\n", sep = "")
+    
+    # =========================
+    # NOTA
+    # =========================
+    cat(
+    "\\noindent \\footnotesize \\textit{Nota:} ",
+    "\\textbf{CITES}:I, II, III = Apéndices de protección según nivel de amenaza. ",
+    "\\textbf{UICN}:LC = Preocupación Menor; NT = Casi Amenazado; VU = Vulnerable; EN = En Peligro; CR = En Peligro Crítico; DD = Datos Insuficientes; NE = No Evaluado. ",
+    "\\textbf{Distribución}:EN = Endémica; CE = Casi Endémica; RE = Restringida; C = Cosmopolita.",
+    " \\normalsize\n",
+    sep = ""
+    )
+    
+    cat("\\endgroup\n")
+      
+    if (usar_landscape) cat("\\end{landscape}\n")
+    cat("\n\n")
+    }
+  
+    # ======================
+    # FIGURA
+    # ======================
+    file_res <- file.path(fig_dir, paste0("fig_", nombre, "_rescate.png"))
+  
+    py$plot_top_general(py$df_sub, file_res)
+    
+    caption_res <- generar_caption(nombre, "Rescate", MES, AÑO)
+    
+    cat(
+      "![",
+      caption_res,
+      "](",
+      file_res,
+      " ){#fig-", nombre, "-rescate}\n\n",
+      sep = ""
+    )
+    
+    cat("\\begingroup\n")
+    cat("\\setstretch{1.1}\n")
+    
+    cat("\\noindent \\footnotesize \\textit{Fuente:} Ecoambiente Solar, ", AÑO, ".\n", sep = "")
+    
+    cat("\\endgroup\n\n")
+    
+    }
+    
+    # ======================
+    # CONSERVACIÓN
+    # ======================
+    
+    df_grupo <- df %>%
+      filter(
+        Clase %in% grupos[[nombre]],
+        Manejo %in% c("Rescate", "Ahuyentamiento")
+      )
+    
+    texto_cons <- generar_texto_conservacion(df_grupo, nombre, MES, AÑO)
+    
+    if (!is.null(texto_cons) && texto_cons != "") {
+    
+      cat("\n\n### Especies de ", nombre, " con interés para la conservación\n\n", sep="")
+      cat(texto_cons, "\n\n")
+    }
+  }
+```
+
+```{r}
+#| label: especies-foto-preview
+#| echo: false
+#| include: false
+
+seleccionar_especies_foto_global <- function(df) {
+  
+  df_proc <- df %>%
+    dplyr::mutate(
+      Dist_clean = toupper(trimws(Distribucion)),
+      IUCN_clean = toupper(trimws(IUCN)),
+      CITES_clean = toupper(trimws(CITES)),
+      
+      Categoria_Cons = dplyr::case_when(
+        grepl("END[ÉE]MICA|CASI END[ÉE]MICA", Dist_clean) ~ "Endemismo",
+        grepl("\\(CR\\)|\\(EN\\)", IUCN_clean) ~ "IUCN_ALTA",
+        grepl("AP[ÉE]NDICE", CITES_clean) ~ "CITES",
+        grepl("\\(VU\\))", IUCN_clean) ~ "IUCN_MEDIA",
+        TRUE ~ NA_character_
+      )
+    )
+
+  # =========================
+  # CONSERVACIÓN
+  # =========================
+  cons <- df_proc %>%
+    dplyr::filter(!is.na(Categoria_Cons)) %>%
+    dplyr::group_by(Especie) %>%
+    dplyr::summarise(
+      Categoria = paste(unique(Categoria_Cons), collapse = ", "),
+      Total = sum(Abundancia, na.rm = TRUE),
+      .groups = "drop"
+    ) %>%
+    dplyr::arrange(Categoria, Total)
+
+  especies_cons <- cons$Especie
+
+  # =========================
+  # TOP AHUYENTAMIENTO (3)
+  # =========================
+  ahuy <- df_proc %>%
+    dplyr::filter(Manejo == "Ahuyentamiento") %>%
+    dplyr::group_by(Especie) %>%
+    dplyr::summarise(Total = sum(Abundancia, na.rm = TRUE), .groups = "drop") %>%
+    dplyr::arrange(desc(Total)) %>%
+    dplyr::slice(1:3)
+
+  especies_ahuy <- ahuy$Especie
+
+  # =========================
+  # TOP RESCATE (3)
+  # =========================
+  resc <- df_proc %>%
+    dplyr::filter(Manejo == "Rescate") %>%
+    dplyr::group_by(Especie) %>%
+    dplyr::summarise(Total = sum(Abundancia, na.rm = TRUE), .groups = "drop") %>%
+    dplyr::arrange(desc(Total)) %>%
+    dplyr::slice(1:3)
+
+  especies_resc <- resc$Especie
+
+  # =========================
+  # UNIÓN FINAL
+  # =========================
+  especies_finales <- unique(c(especies_cons, especies_ahuy, especies_resc))
+
+  return(especies_finales)
+}
+
+cat("===== ESPECIES DESTACADAS =====\n\n")
+
+especies <- seleccionar_especies_foto_global(df)
+
+if (length(especies) == 0) {
+  cat("No hay especies que cumplan los criterios.\n")
+} else {
+
+  verificacion <- df %>%
+    dplyr::filter(Especie %in% especies) %>%
+    dplyr::group_by(Especie) %>%
+    dplyr::summarise(
+      Tipo = paste(unique(dplyr::case_when(
+        grepl("END[ÉE]MICA", toupper(Distribucion)) ~ "Endémica",
+        grepl("CASI END[ÉE]MICA", toupper(Distribucion)) ~ "Casi endémica",
+        grepl("\\(CR\\)|\\(EN\\)", toupper(IUCN)) ~ "IUCN (CR/EN)",
+        grepl("AP[ÉE]NDICE", toupper(CITES)) ~ "CITES",
+        grepl("\\(VU\\))", toupper(IUCN)) ~ "IUCN (VU)",
+        TRUE ~ "Frecuencia"
+      )), collapse = ", "),
+      Total_Registros = sum(Abundancia, na.rm = TRUE),
+      Ahuyentamiento = sum(Abundancia[Manejo == "Ahuyentamiento"], na.rm = TRUE),
+      Rescate = sum(Abundancia[Manejo == "Rescate"], na.rm = TRUE),
+      .groups = "drop"
+    ) %>%
+    dplyr::arrange(desc(Total_Registros))
+
+  print(verificacion)
+}
+```
+
+```{r}
+#| label: registro-fotografico-fauna
+#| results: asis
+#| echo: false
+
+# =====================================================================
+# FUNCIÓN DE SELECCIÓN 
+# =====================================================================
+seleccionar_especies_foto_global <- function(df, max_total = 6) {
+  
+  df_proc <- df %>%
+    dplyr::mutate(
+      Dist_clean  = toupper(trimws(Distribucion)),
+      IUCN_clean  = toupper(trimws(IUCN)),
+      CITES_clean = toupper(trimws(CITES)),
+      
+      Peso = dplyr::case_when(
+        grepl("END[ÉE]MICA|CE", Dist_clean) ~ 1,            
+        grepl("\\(CR\\)|\\(EN\\)", IUCN_clean) ~ 2,
+        grepl("AP[ÉE]NDICE", CITES_clean) ~ 3,
+        grepl("\\(VU\\))", IUCN_clean) ~ 4,
+        TRUE ~ 5
+      )
+    )
+
+  df_ranking <- df_proc %>%
+    dplyr::group_by(Especie) %>%
+    dplyr::summarise(
+      Prioridad_Min = min(Peso),
+      Total_Abundancia = sum(Abundancia, na.rm = TRUE),
+
+      Total_Ahuy = sum(Abundancia[Manejo == "Ahuyentamiento"], na.rm = TRUE),
+      Total_Resc = sum(Abundancia[Manejo == "Rescate"], na.rm = TRUE),
+
+      .groups = "drop"
+    ) %>%
+    dplyr::mutate(
+     
+      Bonus_Manejo = ifelse(Total_Ahuy > 0 & Total_Resc > 0, 1, 0)
+    ) %>%
+    dplyr::arrange(
+      Prioridad_Min,                  
+      desc(Bonus_Manejo),             
+      desc(Total_Abundancia)          
+    )
+
+  return(df_ranking %>% dplyr::slice(1:max_total) %>% dplyr::pull(Especie))
+}
+
+# =========================================
+# CONFIGURACIÓN DE IMAGEN EXTERNA
+# =========================================
+fig_path <- "../assets/Figura_fauna.png"
+
+especies_en_ppt <- c(
+  "Iguana iguana",
+  "Boa constrictor",
+  "Myrmecophaga tridactyla",
+  "Milvago chimachima",
+  "Helicops danieli",
+  "Synallaxis candei"
+)
+
+if (file.exists(fig_path)) {
+
+  cat("\n\n## Registro fotográfico de fauna\n\n")
+
+  cat(
+  "A continuación se presenta el registro fotográfico de algunas de las especies de fauna registradas durante el mes de ",
+  tolower(MES), " de ", AÑO," (\\textbf{Figura \\ref{fig-registro-fotografico}}). ", 
+  "Las especies presentadas corresponden a un subconjunto representativo de los registros obtenidos durante el periodo evaluado. La selección prioriza aquellas con relevancia en términos de conservación, considerando categorías de amenaza de la UICN, inclusión en los apéndices de CITES y condición de endemismo (incluyendo especies casi endémicas); adicionalmente, se incorpora el criterio de frecuencia de registro, de manera que también se incluyen especies con mayor abundancia relativa, particularmente aquellas asociadas a eventos de ahuyentamiento y rescate, con el fin de asegurar una representación tanto ecológica como operativa de la fauna registrada.\n\n",
+  sep=""
+  )
+# =========================
+# TOP MANEJO GLOBAL
+# =========================
+top_ahuy <- df %>%
+  dplyr::filter(Manejo == "Ahuyentamiento") %>%
+  dplyr::group_by(Especie) %>%
+  dplyr::summarise(Total = sum(Abundancia, na.rm = TRUE), .groups = "drop") %>%
+  dplyr::arrange(desc(Total)) %>%
+  dplyr::slice(1) %>%
+  dplyr::pull(Especie)
+
+top_resc <- df %>%
+  dplyr::filter(Manejo == "Rescate") %>%
+  dplyr::group_by(Especie) %>%
+  dplyr::summarise(Total = sum(Abundancia, na.rm = TRUE), .groups = "drop") %>%
+  dplyr::arrange(desc(Total)) %>%
+  dplyr::slice(1) %>%
+  dplyr::pull(Especie)
+
+  # ===============================================
+  # CONSTRUCCIÓN DE LEYENDA 
+  # ===============================================
+  etiquetas <- LETTERS[1:length(especies_en_ppt)]
+  detalles <- c()
+
+  for (i in seq_along(especies_en_ppt)) {
+
+    sp <- especies_en_ppt[i]
+
+    info <- df %>%
+      dplyr::filter(Especie == sp) %>%
+      dplyr::slice(1)
+
+    # =========================
+    # LIMPIEZA
+    # =========================
+    codigo_iucn <- stringr::str_extract(info$IUCN, "\\((.*?)\\)")
+    codigo_iucn <- gsub("[()]", "", codigo_iucn)
+
+    cites_clean <- toupper(trimws(info$CITES))
+    dist_clean  <- toupper(trimws(info$Distribucion))
+
+    razones_list <- c()
+
+    # =========================
+    # A. IUCN
+    # =========================
+    if (!is.na(codigo_iucn) && any(codigo_iucn %in% c("VU","EN","CR"))) {
+      razones_list <- c(razones_list, paste0("IUCN: ", codigo_iucn))
+    }
+
+    # =========================
+    # B. CITES
+    # =========================
+    if (!is.na(cites_clean) && isTRUE(grepl("AP[ÉE]NDICE", cites_clean))) {
+      cites_num <- gsub("(?i)apéndice ", "", info$CITES, perl = TRUE)
+      razones_list <- c(razones_list, paste0("CITES: ", cites_num))
+    }
+
+    # =========================
+    # C. ENDEMISMO
+    # =========================
+    if (!is.na(dist_clean) && isTRUE(grepl("CASI END[ÉE]MICA|\\bCE\\b", dist_clean))) {
+    razones_list <- c(razones_list, "Casi endémica")
+    } else if (!is.na(dist_clean) && isTRUE(grepl("END[ÉE]MICA", dist_clean))) {
+    razones_list <- c(razones_list, "Endémica")
+    }
+
+    # =========================
+    # D. MANEJO
+    # =========================
+    if (sp %in% top_ahuy) {
+      razones_list <- c(razones_list, "Más registrada en ahuyentamiento")
+    }
+    
+    if (sp %in% top_resc) {
+      razones_list <- c(razones_list, "Más registrada en rescate")
+    }
+    
+    # Si no tiene nada aún (caso raro)
+    if (length(razones_list) == 0) {
+      razones_list <- "Registro representativo"
+    }
+
+    # =========================
+    # UNIÓN FINAL POR ESPECIE
+    # =========================
+    razon_final <- paste(razones_list, collapse = ", ")
+
+    detalles <- c(
+      detalles,
+      paste0("\\textbf{", etiquetas[i], ".} \\textit{", sp, "} (", razon_final, ")")
+    )
+  }
+
+  # =========================
+  # CAPTION FINAL
+  # =========================
+  full_caption <- paste0(
+    "Registro fotográfico de fauna. ",
+    paste(detalles, collapse = ". "),
+    "."
+  )
+
+  # =========================
+  # FIGURA
+  # =========================
+  cat("\\begin{figure}[H]\n\\centering\n")
+  cat("\\includegraphics[width=\\linewidth]{", fig_path, "}\n", sep = "")
+  cat("\\caption{", full_caption, "}\n", sep = "")
+  cat("\\label{fig-registro-fotografico}\n") 
+  cat("\\end{figure}\n\n")
+
+  cat(
+    "\\noindent \\footnotesize \\textit{Fuente:} Wikimedia Commons (consultado en ",
+    AÑO,
+    "). \\normalsize\n\n",
+    sep = ""
+  )
+}
+```
+
+# Indicadores de gestión y efectividad
+
+La evaluación de las medidas de manejo de fauna silvestre trasciende la cuantificación de individuos intervenidos; requiere analizar la efectividad operativa de los procedimientos aplicados frente a los lineamientos del Plan de Manejo Ambiental (PMA). En ese sentido, la gestión se analizó bajo tres premisas fundamentales: la prevención del impacto (ahuyentamiento), la mitigación directa (rescate y reubicación) y la garantía de bienestar animal (supervivencia).
+
+Durante el mes de `r MES` del `r AÑO` , se calcularon los indicadores de gestión asociados a las actividades de ahuyentamiento, rescate y reubicación, con el fin de evaluar el desempeño de las medidas implementadas. Los resultados obtenidos se presentan en **@tbl-indicadores**.
+
+```{r}
+#| label: tbl-indicadores
+#| tbl-cap: !expr paste0("Indicadores de gestión y efectividad del manejo de fauna durante el mes de ",MES, " de ", AÑO, ".")
+#| results: asis
+#| tbl-pos: H
+
+library(kableExtra)
+
+# =========================
+# CARGAR TABLA
+# =========================
+tabla_indicadores <- read.csv("../outputs/tables/tabla_indicadores.csv")
+
+# =========================
+# FORMATO TABLA
+# =========================
+tabla_kable_ind <- knitr::kable(
+  tabla_indicadores,
+  format = "latex",
+  booktabs = TRUE,
+  longtable = FALSE,
+  escape = TRUE,
+  align = c("l", "l", "c", "c", "c")
+) %>%
+  kableExtra::kable_styling(
+    latex_options = c("hold_position"),
+    font_size = 9
+  ) %>%
+  kableExtra::row_spec(0, bold = TRUE) %>%
+  kableExtra::column_spec(1, bold = TRUE)
+
+# =========================
+# IMPRESIÓN
+# =========================
+
+print(tabla_kable_ind)
+
+```
+
+\begin{flushleft}
+
+\footnotesize
+
+\textit{Fuente:} Ecoambiente Solar, `r AÑO`.
+
+\end{flushleft}
+
+# Conclusiones
+
+## Dinámica poblacional y respuesta al manejo
+
+Durante el periodo de `r MES` de `r AÑO`, se registró una respuesta diferencial de los grupos taxonómicos frente a las medidas de manejo implementadas. Se observó un predominio de la clase Aves en las actividades de ahuyentamiento (n = `r sum(tab_clase_manejo$Ahuyentamiento[tab_clase_manejo$Clase == "Aves"])`) frente a los rescates (n = `r sum(tab_clase_manejo$Rescate[tab_clase_manejo$Clase == "Aves"])`). Esta tendencia valida la efectividad de los métodos de perturbación sonora y mecánica , coincidiendo con la alta capacidad de dispersión y respuesta de huida de este grupo ante estímulos antrópicos.
+
+En contraste, los anfibios presentaron una respuesta nula al ahuyentamiento (n = `r sum(tab_clase_manejo$Ahuyentamiento[tab_clase_manejo$Clase == "Amphibia"])`), concentrando la totalidad de sus registros (n = `r sum(tab_clase_manejo$Total[tab_clase_manejo$Clase == "Amphibia"])`) en la medida de rescate. Este patrón es biológicamente esperable debido a su baja movilidad, dependencia de microhábitats específicos (como hojarasca o cuerpos de agua temporales) y hábitos crípticos, factores que limitan su desplazamiento autónomo ante disturbios mecánicos.
+
+Por su parte, los reptiles y mamíferos mostraron una distribución de registros entre ahuyentamiento y rescate que refleja la heterogeneidad en sus capacidades de desplazamiento (n total reptiles = `r sum(tab_clase_manejo$Total[tab_clase_manejo$Clase == "Reptilia"])`); (n total mamíferos = `r sum(tab_clase_manejo$Total[tab_clase_manejo$Clase == "Mammalia"])`). Mientras que especies de rápida huida fueron gestionadas mediante ahuyentamiento, la presencia de individuos rescatados indica la coexistencia de fauna con hábitos defensivos estáticos o movilidad reducida, lo que ratifica que la medida de rescate constituye un complemento crítico para garantizar la protección integral de la fauna en el área de intervención.
+
+## Gestión de especies de interés para la conservación
+
+```{r}
+#| label: prep-especies-conservacion
+#| echo: false
+#| results: asis
+
+library(dplyr)
+library(stringr)
+
+# =========================================
+# LIMPIEZA BASE
+# =========================================
+df_cons <- df %>%
+  mutate(
+    IUCN_code = str_extract(IUCN, "\\((.*?)\\)") %>% 
+                str_remove_all("[()]") %>% 
+                toupper(),
+    CITES_clean = toupper(trimws(CITES)),
+    Dist_clean = toupper(trimws(Distribucion))
+  )
+
+# =========================================
+# FUNCIONES AUXILIARES
+# =========================================
+
+formatear_lista <- function(x) {
+  if (length(x) == 0) return(NULL)
+  if (length(x) == 1) return(x)
+  
+  conj <- ifelse(grepl("^[iI]", x[length(x)]), " e ", " y ")
+  
+  paste0(
+    paste(x[-length(x)], collapse = ", "),
+    conj,
+    x[length(x)]
+  )
+}
+
+# Traducción IUCN
+traducir_iucn <- function(x){
+  case_when(
+    x == "CR" ~ "En Peligro Crítico (CR)",
+    x == "EN" ~ "En Peligro (EN)",
+    x == "VU" ~ "Vulnerable (VU)",
+    TRUE ~ x
+  )
+}
+
+# Capitalizar nombre común
+cap_nombre <- function(x){
+  str_to_sentence(x)
+}
+
+# =========================================
+# IUCN
+# =========================================
+esp_iucn_df <- df_cons %>%
+  filter(IUCN_code %in% c("CR","EN","VU")) %>%
+  distinct(Especie, Nombre_comun, IUCN_code)
+
+txt_iucn <- NULL
+
+if (nrow(esp_iucn_df) > 0) {
+  
+  if (nrow(esp_iucn_df) == 1) {
+    
+    fila <- esp_iucn_df[1,]
+    
+    nombre <- cap_nombre(fila$Nombre_comun)
+    especie <- fila$Especie
+    categoria <- traducir_iucn(fila$IUCN_code)
+    
+    txt_iucn <- paste0(
+      "las categorías de la UICN, se destaca el registro de la especie ", nombre, 
+      " (\\textit{", especie, "}), categorizada como ", categoria, 
+      ". El manejo de estos especímenes es crítico, dado que que según la Resolución 0126 de 2024 del Ministerio de Ambiente y Desarrollo Sostenible, la región Caribe alberga el 16,8% de las especies amenazadas del país; por tanto, su manejo exitoso no solo cumple con el PMA, sino que contribuye directamente a la mitigación del impacto sobre la biodiversidad nacional."
+    )
+    
+  } else {
+    
+    lista <- esp_iucn_df %>%
+      mutate(txt = paste0(
+        cap_nombre(Nombre_comun), 
+        " (\\textit{", Especie, "}, ", traducir_iucn(IUCN_code), ")"
+      )) %>%
+      pull(txt)
+    
+    txt_iucn <- paste0(
+      "las categorías de la UICN, se registraron especies categorizadas tales como ",
+      formatear_lista(lista),
+      ". El manejo de estos especímenes es crítico, dado que que según la Resolución 0126 de 2024 del Ministerio de Ambiente y Desarrollo Sostenible, la región Caribe alberga el 16,8% de las especies amenazadas del país; por tanto, su manejo exitoso no solo cumple con el PMA, sino que contribuye directamente a la mitigación del impacto sobre la biodiversidad nacional."
+    )
+  }
+}
+
+# =========================================
+# CITES
+# =========================================
+esp_cites_df <- df_cons %>%
+  filter(str_detect(CITES_clean, "APÉNDICE")) %>%
+  mutate(CITES_num = str_extract(CITES_clean, "(?<=APÉNDICE )I{1,3}")) %>%
+  distinct(Especie, Nombre_comun, CITES_num)
+
+txt_cites <- NULL
+
+if (nrow(esp_cites_df) > 0) {
+  
+  partes <- esp_cites_df %>%
+    group_by(CITES_num) %>%
+    summarise(
+      lista = list(
+        formatear_lista(
+          paste0(
+            cap_nombre(Nombre_comun), 
+            " (\\textit{", Especie, "})"
+          )
+        )
+      ),
+      .groups = "drop"
+    ) %>%
+    mutate(
+      texto = paste0(
+        "Apéndice ", CITES_num, ": ",
+        lista
+      )
+    ) %>%
+    pull(texto)
+  
+  # manejar conectores ; y
+  partes_txt <- if (length(partes) == 1) {
+    partes
+  } else {
+    paste0(
+      paste(partes[-length(partes)], collapse = "; "),
+      " y ",
+      partes[length(partes)]
+    )
+  }
+  
+  # singular vs plural
+  sujeto <- ifelse(nrow(esp_cites_df) == 1,
+                   "la convención CITES, se gestionó de manera efectiva una especie incluida en ",
+                   "la convención CITES, se gestionaron de manera efectiva especies incluidas en ")
+  
+  txt_cites <- paste0(
+    sujeto,
+    ifelse(length(partes) > 1,
+           paste0("diferentes apéndices de la CITES, específicamente en ", partes_txt),
+           partes_txt),
+    ". La inclusión en estos apéndices no solo implica restricciones al comercio internacional, sino que obliga al proyecto a garantizar que la intervención antrópica no afecte la viabilidad de sus poblaciones locales."
+  )
+}
+
+# =========================================
+# ENDEMISMO
+# =========================================
+esp_end_df <- df_cons %>%
+  filter(str_detect(Dist_clean, "ENDÉMICA|\\bCE\\b|CASI")) %>%
+  mutate(
+    etiqueta = case_when(
+      str_detect(Dist_clean, "CASI|\\bCE\\b") ~ "casi endémica",
+      str_detect(Dist_clean, "ENDÉMICA") ~ "endémica"
+    )
+  ) %>%
+  distinct(Especie, Nombre_comun, etiqueta)
+
+txt_end <- NULL
+
+if (nrow(esp_end_df) > 0) {
+  
+  lista <- esp_end_df %>%
+    mutate(txt = paste0(
+      cap_nombre(Nombre_comun), 
+      " (\\textit{", Especie, "}, ", etiqueta, ")"
+    )) %>%
+    pull(txt)
+  
+  if (length(lista) == 1) {
+    txt_end <- paste0(
+      "se resalta el registro de la especie ",
+      lista,
+      ", lo que incrementa su vulnerabilidad frente a la pérdida de hábitat y resalta la relevancia ecológica del área intervenida. El manejo exitoso y el monitoreo de estos taxones es imperativo, dado que su carácter irremplazable implica que cualquier medida de protección local tiene un impacto directo en la conservación del patrimonio genético global de estas especies."
+    )
+  } else {
+    txt_end <- paste0(
+      "se registraron especies con restricción geográfica, tales como ",
+      formatear_lista(lista),
+      ", lo que incrementa su vulnerabilidad frente a la pérdida de hábitat y resalta la relevancia ecológica del área intervenida. El manejo exitoso y el monitoreo de estos taxones es imperativo, dado que su carácter irremplazable implica que cualquier medida de protección local tiene un impacto directo en la conservación del patrimonio genético global de estas especies."
+    )
+  }
+}
+
+# =========================================
+# ENSAMBLE DINÁMICO
+# =========================================
+parrafos <- list(
+  iucn = txt_iucn,
+  cites = txt_cites,
+  end = txt_end
+)
+
+parrafos <- parrafos[!sapply(parrafos, is.null)]
+
+n <- length(parrafos)
+
+# conectores dinámicos reales
+conectores <- c("En relación con", "Respecto a", "Finalmente")
+
+if (n == 1) conectores <- conectores[1]
+if (n == 2) conectores <- conectores[1:2]
+if (n == 3) conectores <- conectores[1:3]
+  
+# =========================================
+# SALIDA FINAL
+# =========================================
+
+if (n > 0) {
+  
+  cat(
+    "Durante el periodo de ", MES, " de ", AÑO, 
+    ", se resaltaron algunas especies con interés para la conservación. ",
+    conectores[1], " ",
+    parrafos[[1]], "\n\n",
+    sep = ""
+  )
+  
+  if (n > 1) {
+    for (i in 2:n) {
+      cat(
+        conectores[i], " ",
+        parrafos[[i]], "\n\n",
+        sep = ""
+      )
+    }
+  }
+}
+```
+
+## Desempeño y cumplimiento de indicadores PMA
+
+Durante el periodo de `r MES` de `r AÑO`, el desempeño del equipo biótico se mantuvo alineado con los objetivos de conservación del PMA, logrando que la totalidad de los indicadores de gestión evaluados se ubicaran dentro de los rangos de cumplimiento exigidos por la autoridad ambiental.
+
+El indicador de Efectividad de Ahuyentamiento alcanzó un valor de `r tabla_indicadores$Resultado[tabla_indicadores$Indicador == "Efectividad de Ahuyentamiento"]`, manteniéndose dentro del umbral de cumplimiento exigido (\< 20%). Desde un criterio biológico y operativo, este resultado valida la implementación de los métodos de perturbación como la principal barrera preventiva del proyecto. Un valor bajo en este indicador es técnicamente deseable, ya que confirma que la mayoría de la fauna logra el abandono autónomo del área, minimizando la manipulación directa y evitando el estrés fisiológico derivado de la captura y el transporte.
+
+Respecto a la gestión directa de individuos, tanto el Éxito de Reubicación (`r tabla_indicadores$Resultado[tabla_indicadores$Indicador == "Éxito de Reubicación"]`), como la Tasa de Mortalidad de (`r tabla_indicadores$Resultado[tabla_indicadores$Indicador == "Tasa de Mortalidad"]`) se mantuvieron dentro de los umbrales de tolerancia establecidos (\> 95% y \< 5% respectivamente). El comportamiento de estos indicadores garantiza que los protocolos de captura, transporte y liberación están cumpliendo su función de salvaguardar la integridad física de los especímenes, consolidando una gestión biótica eficiente y ajustada a los estándares de manejo de biodiversidad del proyecto.

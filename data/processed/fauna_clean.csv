@@ -1,0 +1,121 @@
+Id_registro,Fecha,Proyecto,Area,Actividad,Manejo,Clase,Especie,Nombre_comun,Abundancia,Estado,Reubicado,Orden,Familia,CITES,IUCN,Distribucion
+1,2026-03-01,Proyecto Solar Alpha,Área 3,Inspección,Rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si,Cingulata,DASYPODIDAE,,Preocupación Menor (LC),Restringida
+2,2026-03-01,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,Ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,4,vivo,,Squamata,ANOLIDAE,,Preocupación Menor (LC),Restringida
+3,2026-03-01,Proyecto Solar Alpha,Área 1,Inspección,Ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+4,2026-03-01,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+5,2026-03-02,Proyecto Solar Alpha,Área 3,Inspección,Rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,2,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Restringida
+6,2026-03-02,Proyecto Solar Alpha,Área 1,Inspección,Ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+7,2026-03-02,Proyecto Solar Alpha,Área 1,Obra civil,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+8,2026-03-02,Proyecto Solar Alpha,Área 3,Inspección,Rescate,Reptilia,Trachemys callirostris,Hicotea,2,vivo,si,Testudines,EMYDIDAE,,No Evaluado (NE),Restringida
+9,2026-03-03,Proyecto Solar Alpha,Área 2,Rocería,Rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si,Testudines,EMYDIDAE,,No Evaluado (NE),Restringida
+10,2026-03-03,Proyecto Solar Alpha,Área 2,Inspección,Rescate,Reptilia,Helicops danieli,Mapaná de agua,2,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Endémica
+11,2026-03-03,Proyecto Solar Alpha,Área 4,Obra civil,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+12,2026-03-03,Proyecto Solar Alpha,Área 1,Obra civil,Ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+13,2026-03-04,Proyecto Solar Alpha,Área 3,Rocería,Rescate,Reptilia,Boa constrictor,Boa,1,vivo,si,Squamata,BOIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+14,2026-03-04,Proyecto Solar Alpha,Área 2,Rocería,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+15,2026-03-04,Proyecto Solar Alpha,Área 1,Obra civil,Rescate,Reptilia,Boa constrictor,Boa,2,vivo,si,Squamata,BOIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+16,2026-03-04,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,Rescate,Amphibia,Scinax ruber,Ranita,2,vivo,si,Anura,HYLIDAE,,Preocupación Menor (LC),Restringida
+17,2026-03-05,Proyecto Solar Alpha,Área 3,Rocería,Rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si,Cingulata,DASYPODIDAE,,Preocupación Menor (LC),Restringida
+18,2026-03-05,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,Rescate,Reptilia,Helicops danieli,Mapaná de agua,2,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Endémica
+19,2026-03-05,Proyecto Solar Alpha,Área 1,Rocería,Rescate,Amphibia,Scinax ruber,Ranita,2,vivo,si,Anura,HYLIDAE,,Preocupación Menor (LC),Restringida
+20,2026-03-05,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,Ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,8,vivo,,Squamata,ANOLIDAE,,Preocupación Menor (LC),Restringida
+21,2026-03-06,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+22,2026-03-06,Proyecto Solar Alpha,Área 1,Inspección,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+23,2026-03-06,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+24,2026-03-06,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+25,2026-03-07,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Reptilia,Iguana iguana,Iguana,2,vivo,,Squamata,IGUANIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+26,2026-03-07,Proyecto Solar Alpha,Área 1,Obra civil,Rescate,Mammalia,Myrmecophaga tridactyla,Oso hormiguero,1,vivo,si,Pilosa,MYRMECOPHAGIDAE,Apéndice II,Vulnerable (VU),Restringida
+27,2026-03-07,Proyecto Solar Alpha,Área 4,Rocería,Rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si,Cingulata,DASYPODIDAE,,Preocupación Menor (LC),Restringida
+28,2026-03-07,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+29,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+30,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+31,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+32,2026-03-08,Proyecto Solar Alpha,Área 3,Inspección,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,4,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+33,2026-03-09,Proyecto Solar Alpha,Área 2,Inspección,Rescate,Reptilia,Boa constrictor,Boa,1,vivo,si,Squamata,BOIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+34,2026-03-09,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+35,2026-03-09,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,Rescate,Reptilia,Helicops danieli,Mapaná de agua,1,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Endémica
+36,2026-03-09,Proyecto Solar Alpha,Área 3,Inspección,Ahuyentamiento,Mammalia,Zygodontomys brevicauda,Ratón de caña,12,vivo,,Rodentia,CRICETIDAE,,Preocupación Menor (LC),Restringida
+37,2026-03-10,Proyecto Solar Alpha,Área 4,Rocería,Rescate,Amphibia,Scinax ruber,Ranita,2,vivo,si,Anura,HYLIDAE,,Preocupación Menor (LC),Restringida
+38,2026-03-10,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+39,2026-03-10,Proyecto Solar Alpha,Área 2,Obra civil,Rescate,Aves,Coragyps atratus,Chulo,1,vivo,si,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+40,2026-03-10,Proyecto Solar Alpha,Área 2,Inspección,Rescate,Mammalia,Myrmecophaga tridactyla,Oso hormiguero,1,vivo,si,Pilosa,MYRMECOPHAGIDAE,Apéndice II,Vulnerable (VU),Restringida
+41,2026-03-11,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+42,2026-03-11,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,Ahuyentamiento,Aves,Turdus grayi,Mirla,4,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+43,2026-03-11,Proyecto Solar Alpha,Área 1,Rocería,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+44,2026-03-11,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,Ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+45,2026-03-12,Proyecto Solar Alpha,Área 1,Rocería,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+46,2026-03-12,Proyecto Solar Alpha,Área 1,Rocería,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+47,2026-03-12,Proyecto Solar Alpha,Área 2,Inspección,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+48,2026-03-12,Proyecto Solar Alpha,Área 3,Inspección,Rescate,Reptilia,Helicops danieli,Mapaná de agua,2,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Endémica
+49,2026-03-13,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,Ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+50,2026-03-13,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Turdus grayi,Mirla,3,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+51,2026-03-13,Proyecto Solar Alpha,Área 4,Rocería,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+52,2026-03-13,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+53,2026-03-14,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,4,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+54,2026-03-14,Proyecto Solar Alpha,Área 1,Inspección,Rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,1,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Restringida
+55,2026-03-14,Proyecto Solar Alpha,Área 1,Rocería,Rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si,Testudines,EMYDIDAE,,No Evaluado (NE),Restringida
+56,2026-03-14,Proyecto Solar Alpha,Área 4,Obra civil,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+57,2026-03-15,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Reptilia,Iguana iguana,Iguana,4,vivo,,Squamata,IGUANIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+58,2026-03-15,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Mammalia,Didelphis marsupialis,Zarigüeya,4,vivo,,Didelphimorphia,DIDELPHIDAE,,Preocupación Menor (LC),Restringida
+59,2026-03-15,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,Rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,2,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Restringida
+60,2026-03-15,Proyecto Solar Alpha,Área 3,Inspección,Ahuyentamiento,Aves,Turdus grayi,Mirla,4,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+61,2026-03-16,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+62,2026-03-16,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,Rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,2,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Restringida
+63,2026-03-16,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+64,2026-03-16,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,Rescate,Reptilia,Erythrolamprus melanotus,Guardacaminos,1,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Restringida
+65,2026-03-17,Proyecto Solar Alpha,Área 4,Obra civil,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+66,2026-03-17,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+67,2026-03-17,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+68,2026-03-17,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+69,2026-03-18,Proyecto Solar Alpha,Área 1,Inspección,Rescate,Reptilia,Helicops danieli,Mapaná de agua,3,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Endémica
+70,2026-03-18,Proyecto Solar Alpha,Área 1,Rocería,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+71,2026-03-18,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Aves,Milvago chimachima,Caracara,2,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+72,2026-03-18,Proyecto Solar Alpha,Área 1,Rocería,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+73,2026-03-19,Proyecto Solar Alpha,Área 4,Rocería,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+74,2026-03-19,Proyecto Solar Alpha,Área 1,Inspección,Ahuyentamiento,Aves,Turdus grayi,Mirla,4,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+75,2026-03-19,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+76,2026-03-19,Proyecto Solar Alpha,Área 3,Inspección,Rescate,Reptilia,Boa constrictor,Boa,2,vivo,si,Squamata,BOIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+77,2026-03-20,Proyecto Solar Alpha,Área 1,Tránsito maquinaria,Rescate,Mammalia,Dasypus novemcinctus,Armadillo,1,vivo,si,Cingulata,DASYPODIDAE,,Preocupación Menor (LC),Restringida
+78,2026-03-20,Proyecto Solar Alpha,Área 1,Inspección,Rescate,Amphibia,Ceratophrys calcarata,Sapo cornudo,2,vivo,si,Anura,CERATOPHRYIDAE,,Preocupación Menor (LC),Restringida
+79,2026-03-20,Proyecto Solar Alpha,Área 2,Rocería,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+80,2026-03-20,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,4,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+81,2026-03-21,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Aves,Coragyps atratus,Chulo,4,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+82,2026-03-21,Proyecto Solar Alpha,Área 1,Inspección,Rescate,Reptilia,Helicops danieli,Mapaná de agua,1,vivo,si,Squamata,COLUBRIDAE,,Preocupación Menor (LC),Endémica
+83,2026-03-21,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Mammalia,Zygodontomys brevicauda,Ratón de caña,12,vivo,,Rodentia,CRICETIDAE,,Preocupación Menor (LC),Restringida
+84,2026-03-21,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,4,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+85,2026-03-22,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+86,2026-03-22,Proyecto Solar Alpha,Área 3,Rocería,Rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si,Testudines,EMYDIDAE,,No Evaluado (NE),Restringida
+87,2026-03-22,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,Ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+88,2026-03-22,Proyecto Solar Alpha,Área 4,Rocería,Ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+89,2026-03-23,Proyecto Solar Alpha,Área 4,Rocería,Rescate,Amphibia,Scinax ruber,Ranita,3,vivo,si,Anura,HYLIDAE,,Preocupación Menor (LC),Restringida
+90,2026-03-23,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,Ahuyentamiento,Mammalia,Procyon cancrivorus,Mapache,2,vivo,,Carnivora,PROCYONIDAE,,Preocupación Menor (LC),Restringida
+91,2026-03-23,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+92,2026-03-23,Proyecto Solar Alpha,Área 4,Obra civil,Rescate,Mammalia,Myrmecophaga tridactyla,Oso hormiguero,1,vivo,si,Pilosa,MYRMECOPHAGIDAE,Apéndice II,Vulnerable (VU),Restringida
+93,2026-03-24,Proyecto Solar Alpha,Área 1,Obra civil,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+94,2026-03-24,Proyecto Solar Alpha,Área 4,Inspección,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+95,2026-03-24,Proyecto Solar Alpha,Área 2,Inspección,Ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,6,vivo,,Squamata,ANOLIDAE,,Preocupación Menor (LC),Restringida
+96,2026-03-24,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,Ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+97,2026-03-25,Proyecto Solar Alpha,Área 4,Rocería,Rescate,Reptilia,Boa constrictor,Boa,1,vivo,si,Squamata,BOIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+98,2026-03-25,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Aves,Milvago chimachima,Caracara,3,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+99,2026-03-25,Proyecto Solar Alpha,Área 1,Rocería,Rescate,Reptilia,Boa constrictor,Boa,2,vivo,si,Squamata,BOIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+100,2026-03-25,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+101,2026-03-26,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Aves,Turdus grayi,Mirla,3,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+102,2026-03-26,Proyecto Solar Alpha,Área 4,Rocería,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+103,2026-03-26,Proyecto Solar Alpha,Área 2,Rocería,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+104,2026-03-26,Proyecto Solar Alpha,Área 2,Obra civil,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+105,2026-03-27,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Reptilia,Iguana iguana,Iguana,4,vivo,,Squamata,IGUANIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+106,2026-03-27,Proyecto Solar Alpha,Área 2,Rocería,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+107,2026-03-27,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+108,2026-03-27,Proyecto Solar Alpha,Área 3,Inspección,Ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+109,2026-03-28,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,Ahuyentamiento,Aves,Turdus grayi,Mirla,2,vivo,,Passeriformes,TURDIDAE,,Preocupación Menor (LC),Restringida
+110,2026-03-28,Proyecto Solar Alpha,Área 2,Inspección,Ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,6,vivo,,Squamata,ANOLIDAE,,Preocupación Menor (LC),Restringida
+111,2026-03-28,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Columbina talpacoti,Torcaza,2,vivo,,Columbiformes,COLUMBIDAE,,Preocupación Menor (LC),Restringida
+112,2026-03-28,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,2,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica
+113,2026-03-29,Proyecto Solar Alpha,Área 3,Tránsito maquinaria,Ahuyentamiento,Aves,Milvago chimachima,Caracara,4,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+114,2026-03-29,Proyecto Solar Alpha,Área 1,Obra civil,Ahuyentamiento,Reptilia,Anolis auratus,Camaleoncito,7,vivo,,Squamata,ANOLIDAE,,Preocupación Menor (LC),Restringida
+115,2026-03-29,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Coragyps atratus,Chulo,2,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+116,2026-03-29,Proyecto Solar Alpha,Área 3,Obra civil,Ahuyentamiento,Aves,Coragyps atratus,Chulo,3,vivo,,Cathartiformes,CATHARTIDAE,,Preocupación Menor (LC),Restringida
+117,2026-03-30,Proyecto Solar Alpha,Área 3,Rocería,Rescate,Reptilia,Trachemys callirostris,Hicotea,1,vivo,si,Testudines,EMYDIDAE,,No Evaluado (NE),Restringida
+118,2026-03-30,Proyecto Solar Alpha,Área 4,Tránsito maquinaria,Ahuyentamiento,Aves,Milvago chimachima,Caracara,3,vivo,,Falconiformes,FALCONIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+119,2026-03-30,Proyecto Solar Alpha,Área 3,Rocería,Ahuyentamiento,Reptilia,Iguana iguana,Iguana,4,vivo,,Squamata,IGUANIDAE,Apéndice II,Preocupación Menor (LC),Restringida
+120,2026-03-31,Proyecto Solar Alpha,Área 2,Tránsito maquinaria,Ahuyentamiento,Aves,Synallaxis candei,Rastrojero,3,vivo,,Passeriformes,FURNARIIDAE,,Preocupación Menor (LC),Casi endémica

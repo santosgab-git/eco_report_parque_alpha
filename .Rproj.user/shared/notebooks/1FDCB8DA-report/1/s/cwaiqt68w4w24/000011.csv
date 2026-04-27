@@ -1,0 +1,106 @@
+"1","\endgroup
+"
+"1","
+"
+"1",""
+"1","Registro de anfibios rescatados por áreas durante el mes de abril de 2026 e información de estado de conservación y distribución."
+"1",""
+"1","
+"
+"1",":::
+"
+"1","\vspace{2pt}
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"
+"1","\noindent \footnotesize \textit{Fuente:} Ecoambiente Solar, "
+"1",""
+"1","2026"
+"1",""
+"1",".
+
+"
+"1","\noindent \footnotesize \textit{Nota:} "
+"1",""
+"1","\textbf{CITES}:I, II, III = Apéndices de protección según nivel de amenaza. "
+"1",""
+"1","\textbf{UICN}:LC = Preocupación Menor; NT = Casi Amenazado; VU = Vulnerable; EN = En Peligro; CR = En Peligro Crítico; DD = Datos Insuficientes; NE = No Evaluado. "
+"1",""
+"1","\textbf{Distribución}:EN = Endémica; CE = Casi Endémica; RE = Restringida; C = Cosmopolita."
+"1",""
+"1"," \normalsize
+"
+"1","\endgroup
+"
+"1","
+
+"
+"1","!["
+"1",""
+"1","Abundancia de anfibios rescatados en el mes de abril de 2026. **A**. Distribución de abundancias por especies. **B**. Distribución de abundancias por áreas."
+"1",""
+"1","]("
+"1",""
+"1","../outputs/figures/fig_anfibios_rescate.png"
+"1",""
+"1"," ){#fig-"
+"1",""
+"1","anfibios"
+"1",""
+"1","-rescate}
+
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"
+"1","\noindent \footnotesize \textit{Fuente:} Ecoambiente Solar, "
+"1",""
+"1","2026"
+"1",""
+"1",".
+"
+"1","\endgroup
+
+"
+"1","
+
+### Especies de "
+"1",""
+"1","anfibios"
+"1",""
+"1"," con interés para la conservación
+
+"
+"1","Según la UICN, para el mes de abril de 2026, todas las especies registradas se encuentran en Preocupación Menor (LC). No se reportaron especies bajo la convención CITES. No se registraron especies con grado de endemismo para el país."
+"1"," "
+"1","
+
+"
+"1","
+
+### Ahuyentamiento de "
+"1",""
+"1","reptiles"
+"1",""
+"1","
+
+"
+"1","Durante el mes de abril de 2026, en las actividades de ahuyentamiento de reptiles, se registraron 57 individuos en 5 especies, 5 familias y 1 orden (**@tbl-reptiles-ahuyentamiento**). Las especies más abundantes fueron \textit{Anolis auratus} (n = 15), \textit{Iguana iguana} (n = 14) y \textit{Crotalus durissus} (n = 12) (**@fig-reptiles-ahuyentamiento****A**). La mayor abundancia se registró en Área 2 (n = 21), Área 1 (n = 18) y Área 3 (n = 18) (**@fig-reptiles-ahuyentamiento****B**)."
+"1"," "
+"1","
+
+"
+"1","
+::: {#tbl-"
+"1",""
+"1","reptiles"
+"1",""
+"1","-ahuyentamiento}
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"

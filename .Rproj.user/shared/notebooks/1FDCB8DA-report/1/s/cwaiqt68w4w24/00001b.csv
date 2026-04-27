@@ -1,0 +1,81 @@
+"1","\endgroup
+"
+"1","
+"
+"1",""
+"1","Registro de mamíferos ahuyentados por áreas durante el mes de abril de 2026 e información de estado de conservación y distribución."
+"1",""
+"1","
+"
+"1",":::
+"
+"1","\vspace{2pt}
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"
+"1","\noindent \footnotesize \textit{Fuente:} Ecoambiente Solar, "
+"1",""
+"1","2026"
+"1",""
+"1",".
+
+"
+"1","\noindent \footnotesize \textit{Nota:} "
+"1",""
+"1","\textbf{CITES}:I, II, III = Apéndices de protección según nivel de amenaza. "
+"1",""
+"1","\textbf{UICN}:LC = Preocupación Menor; NT = Casi Amenazado; VU = Vulnerable; EN = En Peligro; CR = En Peligro Crítico; DD = Datos Insuficientes; NE = No Evaluado. "
+"1",""
+"1","\textbf{Distribución}:EN = Endémica; CE = Casi Endémica; RE = Restringida; C = Cosmopolita."
+"1",""
+"1"," \normalsize
+"
+"1","\endgroup
+"
+"1","
+
+"
+"1","!["
+"1",""
+"1","Abundancia de mamíferos ahuyentados en el mes de abril de 2026. **A**. Distribución de abundancias por especies. **B**. Distribución de abundancias por áreas."
+"1",""
+"1","]("
+"1",""
+"1","../outputs/figures/fig_mamiferos_ahuyentamiento.png"
+"1",""
+"1"," ){#fig-"
+"1",""
+"1","mamiferos"
+"1",""
+"1","-ahuyentamiento}
+
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"
+"1","\noindent \footnotesize \textit{Fuente:} Ecoambiente Solar, "
+"1",""
+"1","2026"
+"1",""
+"1",".
+"
+"1","\endgroup
+
+"
+"1","
+
+### Rescate y reubicación de "
+"1",""
+"1","mamiferos"
+"1",""
+"1","
+
+"
+"1","No se registraron individuos de mamiferos mediante rescate durante el mes de abril de 2026."
+"1"," "
+"1","
+
+"

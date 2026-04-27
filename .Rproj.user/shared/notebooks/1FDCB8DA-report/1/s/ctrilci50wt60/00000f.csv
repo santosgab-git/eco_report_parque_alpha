@@ -1,0 +1,59 @@
+"0","#| label: Portada personalizada"
+"0","#| results: asis"
+"0",""
+"0","cat(paste0("""
+"0","\\pagenumbering{gobble}"
+"0",""
+"0","\\begin{titlepage}"
+"0","\\centering"
+"0",""
+"0","\\includegraphics[width=0.35\\textwidth]{../assets/logo.png}"
+"0",""
+"0","\\vspace{2cm}"
+"0",""
+"0","{\\Huge \\textbf{Informe Mensual de Gestión de Fauna}}\\\\[1cm]"
+"0",""
+"0","{\\Large Proyecto Parque Solar Alpha}\\\\[0.5cm]"
+"0",""
+"0","\\vspace{1.5cm}"
+"0",""
+"0","{\\large Ecoambiente Solar}\\\\[0.5cm]"
+"0",""
+"0","{\\large "", params$mes, ""}\\\\[0.5cm]"
+"0",""
+"0","{\\large Versión "", params$version, ""}\\\\[0.5cm]"
+"0",""
+"0","\\vfill"
+"0",""
+"0","{\\large \\today}"
+"0",""
+"0","\\end{titlepage}"
+"0","""))"
+"1","
+\pagenumbering{gobble}
+
+\begin{titlepage}
+\centering
+
+\includegraphics[width=0.35\textwidth]{../assets/logo.png}
+
+\vspace{2cm}
+
+{\Huge \textbf{Informe Mensual de Gestión de Fauna}}\\[1cm]
+
+{\Large Proyecto Parque Solar Alpha}\\[0.5cm]
+
+\vspace{1.5cm}
+
+{\large Ecoambiente Solar}\\[0.5cm]
+
+{\large Abril 2026}\\[0.5cm]
+
+{\large Versión 1}\\[0.5cm]
+
+\vfill
+
+{\large \today}
+
+\end{titlepage}
+"

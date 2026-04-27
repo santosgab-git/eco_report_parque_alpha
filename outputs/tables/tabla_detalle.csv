@@ -1,0 +1,53 @@
+Taxon,Nombre_comun,CITES,IUCN,Distribucion,Área 1,Área 2,Área 3,Área 4,Total
+\textbf{Orden Cathartiformes},,,,,,,,,
+\hspace{3mm}\textbf{Familia CATHARTIDAE},,,,,,,,,
+\hspace{6mm}\textit{Coragyps atratus},Chulo,—,LC,RE,5,12,24,10,51
+\textbf{Orden Columbiformes},,,,,,,,,
+\hspace{3mm}\textbf{Familia COLUMBIDAE},,,,,,,,,
+\hspace{6mm}\textit{Columbina talpacoti},Torcaza,—,LC,RE,—,8,10,8,26
+\textbf{Orden Falconiformes},,,,,,,,,
+\hspace{3mm}\textbf{Familia FALCONIDAE},,,,,,,,,
+\hspace{6mm}\textit{Milvago chimachima},Caracara,II,LC,RE,10,20,15,9,54
+\textbf{Orden Passeriformes},,,,,,,,,
+\hspace{3mm}\textbf{Familia FURNARIIDAE},,,,,,,,,
+\hspace{6mm}\textit{Synallaxis candei},Rastrojero,—,LC,CE,16,3,15,15,49
+\hspace{3mm}\textbf{Familia TURDIDAE},,,,,,,,,
+\hspace{6mm}\textit{Turdus grayi},Mirla,—,LC,RE,6,6,16,2,30
+\textbf{Orden Carnivora},,,,,,,,,
+\hspace{3mm}\textbf{Familia PROCYONIDAE},,,,,,,,,
+\hspace{6mm}\textit{Procyon cancrivorus},Mapache,—,LC,RE,—,—,2,—,2
+\textbf{Orden Didelphimorphia},,,,,,,,,
+\hspace{3mm}\textbf{Familia DIDELPHIDAE},,,,,,,,,
+\hspace{6mm}\textit{Didelphis marsupialis},Zarigüeya,—,LC,RE,—,4,—,—,4
+\textbf{Orden Rodentia},,,,,,,,,
+\hspace{3mm}\textbf{Familia CRICETIDAE},,,,,,,,,
+\hspace{6mm}\textit{Zygodontomys brevicauda},Ratón de caña,—,LC,RE,—,—,24,—,24
+\textbf{Orden Squamata},,,,,,,,,
+\hspace{3mm}\textbf{Familia ANOLIDAE},,,,,,,,,
+\hspace{6mm}\textit{Anolis auratus},Camaleoncito,—,LC,RE,7,16,—,8,31
+\hspace{3mm}\textbf{Familia IGUANIDAE},,,,,,,,,
+\hspace{6mm}\textit{Iguana iguana},Iguana,II,LC,RE,—,4,8,2,14
+\textbf{Orden Anura},,,,,,,,,
+\hspace{3mm}\textbf{Familia CERATOPHRYIDAE},,,,,,,,,
+\hspace{6mm}\textit{Ceratophrys calcarata},Sapo cornudo,—,LC,RE,2,—,—,—,2
+\hspace{3mm}\textbf{Familia HYLIDAE},,,,,,,,,
+\hspace{6mm}\textit{Scinax ruber},Ranita,—,LC,RE,4,—,—,5,9
+\textbf{Orden Cathartiformes},,,,,,,,,
+\hspace{3mm}\textbf{Familia CATHARTIDAE},,,,,,,,,
+\hspace{6mm}\textit{Coragyps atratus},Chulo,—,LC,RE,—,1,—,—,1
+\textbf{Orden Cingulata},,,,,,,,,
+\hspace{3mm}\textbf{Familia DASYPODIDAE},,,,,,,,,
+\hspace{6mm}\textit{Dasypus novemcinctus},Armadillo,—,LC,RE,1,—,2,1,4
+\textbf{Orden Pilosa},,,,,,,,,
+\hspace{3mm}\textbf{Familia MYRMECOPHAGIDAE},,,,,,,,,
+\hspace{6mm}\textit{Myrmecophaga tridactyla},Oso hormiguero,II,VU,RE,1,1,—,1,3
+\textbf{Orden Squamata},,,,,,,,,
+\hspace{3mm}\textbf{Familia BOIDAE},,,,,,,,,
+\hspace{6mm}\textit{Boa constrictor},Boa,II,LC,RE,4,1,3,1,9
+\hspace{3mm}\textbf{Familia COLUBRIDAE},,,,,,,,,
+\hspace{6mm}\textit{Erythrolamprus melanotus},Guardacaminos,—,LC,RE,3,—,2,3,8
+\hspace{6mm}\textit{Helicops danieli},Mapaná de agua,—,LC,EN,4,3,2,2,11
+\textbf{Orden Testudines},,,,,,,,,
+\hspace{3mm}\textbf{Familia EMYDIDAE},,,,,,,,,
+\hspace{6mm}\textit{Trachemys callirostris},Hicotea,—,NE,RE,1,1,4,—,6
+"Total: 12 órdenes, 17 familias, 18 especies",,,,,64,80,127,67,338

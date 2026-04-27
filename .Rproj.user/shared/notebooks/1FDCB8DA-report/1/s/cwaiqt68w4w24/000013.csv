@@ -1,0 +1,92 @@
+"1","\endgroup
+"
+"1","
+"
+"1",""
+"1","Registro de reptiles ahuyentados por áreas durante el mes de abril de 2026 e información de estado de conservación y distribución."
+"1",""
+"1","
+"
+"1",":::
+"
+"1","\vspace{2pt}
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"
+"1","\noindent \footnotesize \textit{Fuente:} Ecoambiente Solar, "
+"1",""
+"1","2026"
+"1",""
+"1",".
+
+"
+"1","\noindent \footnotesize \textit{Nota:} "
+"1",""
+"1","\textbf{CITES}:I, II, III = Apéndices de protección según nivel de amenaza. "
+"1",""
+"1","\textbf{UICN}:LC = Preocupación Menor; NT = Casi Amenazado; VU = Vulnerable; EN = En Peligro; CR = En Peligro Crítico; DD = Datos Insuficientes; NE = No Evaluado. "
+"1",""
+"1","\textbf{Distribución}:EN = Endémica; CE = Casi Endémica; RE = Restringida; C = Cosmopolita."
+"1",""
+"1"," \normalsize
+"
+"1","\endgroup
+"
+"1","
+
+"
+"1","!["
+"1",""
+"1","Abundancia de reptiles ahuyentados en el mes de abril de 2026. **A**. Distribución de abundancias por especies. **B**. Distribución de abundancias por áreas."
+"1",""
+"1","]("
+"1",""
+"1","../outputs/figures/fig_reptiles_ahuyentamiento.png"
+"1",""
+"1"," ){#fig-"
+"1",""
+"1","reptiles"
+"1",""
+"1","-ahuyentamiento}
+
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"
+"1","\noindent \footnotesize \textit{Fuente:} Ecoambiente Solar, "
+"1",""
+"1","2026"
+"1",""
+"1",".
+"
+"1","\endgroup
+
+"
+"1","
+
+### Rescate y reubicación de "
+"1",""
+"1","reptiles"
+"1",""
+"1","
+
+"
+"1","Durante el mes de abril de 2026, en las actividades de rescate de reptiles, se registraron 14 individuos en 4 especies, 4 familias y 1 orden (**@tbl-reptiles-rescate**). Las especies más abundantes fueron \textit{Erythrolamprus melanotus} (n = 5), \textit{Anolis auratus} (n = 4) e \textit{Iguana iguana} (n = 4) (**@fig-reptiles-rescate****A**). La mayor abundancia se registró en Área 1 y Área 3, ambas con igual número de individuos (n = 7) (**@fig-reptiles-rescate****B**). Todos los individuos rescatados fueron reubicados exitosamente en las áreas dispuestas para este fin."
+"1"," "
+"1","
+
+"
+"1","
+::: {#tbl-"
+"1",""
+"1","reptiles"
+"1",""
+"1","-rescate}
+"
+"1","\begingroup
+"
+"1","\setstretch{1.1}
+"
