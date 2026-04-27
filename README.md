@@ -156,9 +156,9 @@ source("scripts/Run_all.R")
 
 Este script ejecuta de forma secuencial:
 
-01_cleaning.py
-02_tables.py
-03_plots.py
+- 01_cleaning.py
+- 02_tables.py
+- 03_plots.py
 
 Una vez finalizado, se puede generar el reporte técnico en PDF con:
 
